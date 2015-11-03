@@ -1,0 +1,20 @@
+{
+  "name": "durian",
+  "version": "0.0.1",
+  "description": "this is the package.json file for the durian project",
+  "private": true,
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "./node_modules/mocha/bin/_mocha -R spec",
+    "coverage": "istanbul cover _mocha -- -R spec"
+  },
+  "dependencies": {
+    "mongodb": "^2.0.47",
+    "winston": "^2.0.0"
+  },
+  "devDependencies": {
+    "mocha": "^2.3.3",
+    "should": "^7.1.1"
+  }
+}
