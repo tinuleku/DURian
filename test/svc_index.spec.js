@@ -26,5 +26,18 @@ describe("index", function() {
 			});
 
 		})
+		
+		describe("valid input", function() {
+			it("should send back a valid connection", function() {
+				Svc.authenticate({
+					database: "mongodb://localhost:27017/api"
+				}, function(data) {
+					should(data.status).equal(200);
+					console.log(data.connection);
+					should(data.connection).not.be(null);
+				})
+			});
+
+		})
 	})
 })
