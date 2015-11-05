@@ -4,6 +4,67 @@ var mongodb = require("mongodb");
 var Record = require("../models/records.js");
 
 /**
+ * params
+ * @info: {
+ *	@database: database url,
+ *	@password: database user password (optional),
+ *	@collection: database collection
+ * }
+ * @next: callback
+ */
+exports.authenticate = function(info, next) {
+	// check input
+	if (!info) return next({status: 400, message: "invalid input"});
+	if (!info.database) return next({status: 400, message: "missing database"});
+	var connectionURI = buildConnectionURI(info.database, info.user, info.password);
+	mongodb.client.connect(connectionURI, function(err, db) {
+		if (err) {
+			winston.error("Services | error when connecting to db " + connectionURI + " : " + err);
+			return next({status: 400, message: "invalid connection data"});
+		}
+		winston.info("Services | connected to database " + db.databaseName);
+		return next({status: 200, connection: db});
+	});	
+}
+
+/**
+ * @info: {
+ *	@connection: database connector,
+ *	@user: database user (optional),
+ *	@collection: database collection,
+ *	@selector: selector
+ *	@update: update
+ * }
+ * @next: callback
+ */
+exports.applyOperation = function(info, next) {
+	// check input
+	if (!info) return next({status: 400, message: "invalid input"});
+	if (!info.connection) return next({status: 400, message: "missing connection"});
+	if (!info.collection) return next({status: 400, message: "missing collection"});
+	if (!info.selector) return next({status: 400, message: "missing selector"});
+	// process operation
+	winston.info("Services | apply operation for user " + info.user + " on collection " + info.collection + " with selector " + info.selector + " and update " + info.update);
+	// retrieve what is currently in the db
+	var db = info.connection;
+	db.collection(info.collection).find(info.selector).toArray(function(err, documents) {
+		if (err) {
+			winston.error("Services | error when retrieving documents for selector " + info.selector + " : " + err);
+			return next({status: 500, message: "internal server error"});
+		}
+		var record = new Record({
+			user: info.user,
+			selector: info.selector
+		});
+		record.save(function(err) {
+			if (err) {
+				winston.error("Services | error when retrieving");
+			}
+		});
+	});
+}
+
+/**
  * @info: {
  *	@database: database url,
  *	@user: database user (optional),
@@ -14,37 +75,17 @@ var Record = require("../models/records.js");
  * }
  * @next: callback
  */
-exports.applyOperation = function(info, next) {
+exports.applyOperationBulk = function(info, next) {
 	// check input
 	if (!info) return next({status: 400, message: "invalid input"});
-	if (!info.database) return next({status: 400, message: "missing database"});
+	if (!info.connection) return next({status: 400, message: "missing connection"});
 	if (!info.collection) return next({status: 400, message: "missing collection"});
 	if (!info.selector) return next({status: 400, message: "missing selector"});
 	// process operation
-	winston.info("Services | apply operation on db " + info.database + " with selector " + info.selector + " and update " + info.update);
-	var connectionURI = buildConnectionURI(info.database, info.user, info.password);
-	mongodb.client.connect(connectionURI, function(err, db) {
-		if (err) {
-			winston.error("Services | error when connecting to db " + connectionURI + " : " + err);
-			return next({status: 400, message: "invalid connection data"});
-		}
-		winston.info("Services | connected to database " + db.databaseName);
-		// retrieve what is currently in the db
-		db.collection(info.collection).find(info.selector).toArray(function(err, documents) {
-			if (err) {
-				winston.error("Services | error when retrieving documents for selector " + info.selector + " : " + err);
-				return next({status: 500, message: "internal server error"});
-			}
-			var record = new Record({
-				selector: info.selector
-			});
-			record.save(function(err) {
-				if (err) {
-					winston.error("Services | error when retrieving");
-				}
-			});
-		});
-	});
+	winston.info("Services | apply operation for user " + info.user + " on collection " + info.collection + " with selector " + info.selector + " and update " + info.update);
+	// retrieve what is currently in the db
+	var db = info.connection;
+	
 }
 
 
