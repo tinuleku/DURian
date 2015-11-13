@@ -30,6 +30,11 @@ var extractDataFromToken = function(req, next) {
 	return next(payload);
 }
 
+exports.checkAdmin = function(req, res, next) {
+	// TODO be more restrictive :p
+	return next();
+}
+
 exports.checkLogin = function(req, res, next) {
 	extractDataFromToken(req, function(payload) {
     	if (!payload) {
