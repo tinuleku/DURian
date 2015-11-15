@@ -1,0 +1,11 @@
+<div class="smart-log-viewer">
+	<div class="log-panel">
+		<div ng-repeat="log in logs">
+			<span>{{log.timestamp | amDateFormat: 'MM/DD HH:mm:ss.SSS'}}</span>
+			<span ng-if="showLabel">{{log.label}}</span>
+			<span>{{log.level}}</span>
+			<span>{{log.message}}</span>
+		</div>
+		<div>...</div>
+	</div>
+</div>

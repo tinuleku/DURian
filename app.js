@@ -19,14 +19,14 @@ require("winston-mongodb").MongoDB;
 winston.remove(winston.transports.Console);
 winston.add(winston.transports.MongoDB, config.winston);
 
-app.use(express.static(__dirname + "/public")); 	// set the static files location /public/img will be /img for users
-app.use(morgan("dev")); 							// log every request to the console
+app.use(express.static(__dirname + "/public/dist")); 	// set the static files location /public/img will be /img for users
+app.use(morgan("dev")); 								// log every request to the console
 app.use(bodyParser.urlencoded({
   	extended: true
 }));
-app.use(bodyParser.json()); 						// pull information from html in POST
-app.use(methodOverride()); 							// simulate DELETE and PUT
-app.use(cookieParser());							// Parser cookie if needed (especially for auth)
+app.use(bodyParser.json()); 							// pull information from html in POST
+app.use(methodOverride()); 								// simulate DELETE and PUT
+app.use(cookieParser());								// Parser cookie if needed (especially for auth)
 
 function connectToDB(next) {
 	// Do not connect to database on test, it is done elsewhere
@@ -48,6 +48,10 @@ connectToDB(function(connected) {
 	require("./routes/log.js")(router);
 	
 	app.use("/api", router);							// Declare the API base route
+	
+	app.get("/", function(req, res) {
+		return res.sendFile('index.html', {root: __dirname + '/public/dist'});
+	});
 	
 	httpInstance = http.createServer(app);
 	//https.createServer(options, app).listen(config.port);

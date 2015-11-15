@@ -34,7 +34,7 @@ module.exports = function(app) {
 				      	throw err;
 				    }
 				
-				    res.send({status: 200, logs: results});
+				    res.send({status: 200, logs: results.mongodb});
 				});
 			});
 		});
