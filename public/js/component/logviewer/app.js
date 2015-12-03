@@ -1,6 +1,7 @@
 angular.module("smart.logviewer", [
 	"ui.router",
-	"angularMoment", 
+	"angularMoment",
+	"smart.urlBuilder",
 	"smart.logviewer.controllers", 
 	"smart.logviewer.services",
 	"smart.logviewer.factories"
@@ -14,7 +15,7 @@ angular.module("smart.logviewer", [
     	};
     };
 })
-.config(function($stateProvider, logviewerProvider) {
+.config(function($stateProvider) {
 	
 	// default routing
 	$stateProvider

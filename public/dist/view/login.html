@@ -1,0 +1,30 @@
+<div class="durian-login-page">
+	<div class="box-panel cube-panel" ng-class="{'slide-right': !!form.database}">
+		<div class="database-panel panel-front">
+			<div class="database-header">
+				<span>Pick a database type</span>
+			</div>
+			<div ng-repeat="database in databasesOption" class="database-option" ng-class="{'selected': database.selected}">
+				<button type="button" class="database-select" ng-click="selectDatabase(database)">{{database.name}}</button>
+			</div>
+			<div class="database-footer">
+				<a href ng-click="select()" class="small" ng-class="{'disabled': !selectedDatabase}">Select <i class="fa fa-chevron-right"></i></a>
+			</div>
+		</div>
+		<div class="credentials-panel panel-right">
+			<div class="credentials-header" style="font-size: 25px; color: #bbb; border-bottom: solid 1px #bbb; padding-bottom: 3px; margin-bottom: 3px;">
+				<a href ng-click="unselect()"><i class="fa fa-chevron-left"></i> Back</a>
+				<span class="title">Credentials</span>
+			</div>
+			<div class="credentials-content">
+				<div>Connection to a {{selectedDatabase.name}} database</div>
+				<form>
+					
+					<div>
+						<button type="button" class="button radius tiny" ng-click="login()">Login</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

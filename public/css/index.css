@@ -1,0 +1,86 @@
+.durian-login-page {
+  -webkit-perspective: 500px; }
+  .durian-login-page .cube-panel {
+    position: relative;
+    width: 360px;
+    -webkit-transition: -webkit-transform 1s;
+    transition: transform 1s;
+    /* Animate the transform properties */
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d; }
+    .durian-login-page .cube-panel .panel-front {
+      -webkit-transform: translateZ(180px);
+      transform: translateZ(180px); }
+    .durian-login-page .cube-panel .panel-right {
+      -webkit-transform: rotateY(90deg) translateZ(180px);
+      transform: rotateY(90deg) translateZ(180px); }
+  .durian-login-page .box-panel {
+    margin: auto;
+    margin-top: 40px; }
+    .durian-login-page .box-panel .database-panel {
+      position: absolute;
+      top: 0;
+      background: #fff; }
+      .durian-login-page .box-panel .database-panel .database-header {
+        font-size: 25px;
+        color: #bbb;
+        border-bottom: solid 1px #bbb;
+        padding-bottom: 3px;
+        margin-bottom: 3px; }
+      .durian-login-page .box-panel .database-panel .database-option {
+        display: inline-block;
+        position: relative;
+        width: 120px;
+        max-width: 120px;
+        height: 120px;
+        overflow: hidden;
+        margin-right: 0px;
+        margin-left: 0px;
+        padding: 0px;
+        -webkit-transition: -webkit-transform 0s;
+        transition: transform 0s; }
+        .durian-login-page .box-panel .database-panel .database-option > button {
+          border: solid 1px #bbb;
+          border-radius: 5px;
+          margin: 3px;
+          padding-right: 3px;
+          padding-left: 3px;
+          width: 114px;
+          height: 114px;
+          background: #ccc;
+          font-size: 16px; }
+      .durian-login-page .box-panel .database-panel .database-option.selected > button {
+        background: #b7daf2;
+        border: 1px solid #84b6ec;
+        color: #5294df; }
+      .durian-login-page .box-panel .database-panel .database-footer {
+        margin-top: 3px;
+        padding-top: 3px; }
+        .durian-login-page .box-panel .database-panel .database-footer > a {
+          position: absolute;
+          right: 0px;
+          font-size: 14px; }
+    .durian-login-page .box-panel .credentials-panel {
+      position: absolute;
+      top: 0; }
+      .durian-login-page .box-panel .credentials-panel .credentials-header {
+        text-align: center; }
+        .durian-login-page .box-panel .credentials-panel .credentials-header > a {
+          position: absolute;
+          left: 0px;
+          margin-top: 10px;
+          font-size: 14px; }
+      .durian-login-page .box-panel .credentials-panel .credentials-content {
+        width: 360px; }
+      .durian-login-page .box-panel .credentials-panel .credentials-footer {
+        margin-top: 3px;
+        padding-top: 3px; }
+        .durian-login-page .box-panel .credentials-panel .credentials-footer > button {
+          position: absolute;
+          right: 0px;
+          font-size: 14px; }
+  .durian-login-page .slide-right {
+    -webkit-transform: rotateY(-90deg);
+    transform: rotateY(-90deg); }
+
+/*# sourceMappingURL=index.css.map */

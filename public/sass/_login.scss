@@ -1,0 +1,136 @@
+.durian-login-page {
+	
+	-webkit-perspective: 500px;
+	
+	$boxWidth: 360px;
+	$rotateAngle: 90deg;
+
+	.cube-panel {
+		position: relative; 
+		width: $boxWidth;
+		
+		-webkit-transition: -webkit-transform 1s;
+		transition: transform 1s; /* Animate the transform properties */
+	
+		-webkit-transform-style: preserve-3d;
+		transform-style: preserve-3d;
+		
+		$depth: $boxWidth/2;
+		
+		.panel-front {
+			-webkit-transform: translateZ($depth);
+			transform: translateZ($depth);
+		}
+		
+		.panel-right {
+			-webkit-transform: rotateY($rotateAngle) translateZ($depth);
+			transform: rotateY($rotateAngle) translateZ($depth);
+		}
+	}
+
+	.box-panel {
+		margin: auto; 
+		margin-top: 40px; 
+		
+		.database-panel {
+			position: absolute;
+			top: 0;
+			background: #fff;
+			$optionWidth: $boxWidth/3;
+		
+			.database-header {
+				font-size: 25px; 
+				color: #bbb; 
+				border-bottom: solid 1px #bbb; 
+				padding-bottom: 3px; 
+				margin-bottom: 3px;
+			}
+			
+			.database-option {
+				display: inline-block; 
+				position: relative; 
+				width: $optionWidth; 
+				max-width: $optionWidth; 
+				height: $optionWidth; 
+				overflow: hidden; 
+				margin-right: 0px; 
+				margin-left: 0px; 
+				padding: 0px;
+				-webkit-transition: -webkit-transform 0s;
+				transition: transform 0s;
+				
+				$padding: 3px;
+				
+				& > button {
+					border: solid 1px #bbb; 
+					border-radius: 5px; 
+					margin: 3px; 
+					padding-right: $padding; 
+					padding-left: $padding; 
+					width: $optionWidth - 2*$padding; 
+					height: $optionWidth - 2*$padding; 
+					background: #ccc; 
+					font-size: 16px;
+				}
+			}
+			
+			.database-option.selected {
+				
+				& > button {
+					background: #b7daf2;
+					border: 1px solid #84b6ec;
+					color: #5294df;
+				}
+			}
+			
+			.database-footer {
+				
+				margin-top: 3px; 
+				padding-top: 3px;
+				
+				& > a {
+					position: absolute; 
+					right: 0px; 
+					font-size: 14px;
+				}
+			}
+		}
+		
+		.credentials-panel {
+			position: absolute;
+			top: 0;
+			
+			.credentials-header {
+				& > a {
+					position: absolute; 
+					left: 0px;
+					margin-top: 10px;
+					font-size: 14px;
+				}
+				
+				text-align: center;
+			}
+			
+			.credentials-content {
+				width: $boxWidth;
+			}
+			
+			.credentials-footer {
+				
+				margin-top: 3px; 
+				padding-top: 3px;
+				
+				& > button {
+					position: absolute; 
+					right: 0px; 
+					font-size: 14px;
+				}
+			}
+		}
+	}
+	
+	.slide-right {
+		-webkit-transform: rotateY(-$rotateAngle);
+		transform: rotateY(-$rotateAngle);
+	}
+}

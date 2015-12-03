@@ -71,12 +71,23 @@ module.exports = function(grunt) {
 					"public/js/min.js"
 				],
 				dest: "public/js/min.js"
+			},
+			libcss: {
+				src: [
+					"bower_components/font-awesome/css/font-awesome.min.css",
+					"bower_components/foundation/css/foundation.min.css"
+				],
+				dest: "public/css/lib.css"
+			},
+			css: {
+				src: ["public/css/lib.css", "public/css/index.css"],
+				dest: "public/dist/css/min.css"
 			}
 		},
 		sass: {
 			dist: {
 				files: {
-					"public/css/index_less.css": "public/sass/import.scss"
+					"public/css/index.css": "public/sass/import.scss"
 				}
 			}
 		},
@@ -86,8 +97,8 @@ module.exports = function(grunt) {
 				tasks: ["jshint:dist", "uglify:dist", "concat:libjs", "concat:js"]
 			},
 			sass: {
-				files: ["public/less/**/*.scss", "public/less/*.scss"],
-				tasks: ["sass:dist"]
+				files: ["public/sass/**/*.scss", "public/sass/*.scss"],
+				tasks: ["sass:dist", "concat:css"]
 			}
 		}
 	});
@@ -106,11 +117,13 @@ module.exports = function(grunt) {
 		"copy:generated", 
 		"jshint:dist", 
 		"uglify:dist", 
-		"concat:libjs", 
+		//"concat:libjs", 
 		"concat:js", 
 		"clean:dist", 
 		"useminPrepare", 
 		"filerev:js", 
 		"usemin"
 	]);
+	
+	grunt.registerTask("dev-css", ["concat:libcss", "sass:dist", "concat:css", "watch:sass"])
 };

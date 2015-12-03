@@ -1,5 +1,5 @@
 angular.module("smart.logviewer.services", [])
-.service("logService", function(logModel, $http, logviewer, promiseFactory) {
+.service("logService", function(logModel, $http, logviewer, promiseFactory, urlBuilder) {
 	
 	this.getLogs = function(options) {
 		var promise = promiseFactory.getPromise();
