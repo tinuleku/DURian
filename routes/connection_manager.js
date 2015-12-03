@@ -1,3 +1,4 @@
+var winston = require("winston");
 var later = require("later");
 
 var dico = {};
@@ -33,8 +34,7 @@ exports.store = function(key, value, expiry, override) {
 			key: key,
 			value: value,
 			expiry: expiry
-		}
-		keys.push(key);
+		};
 	}
 }
 
@@ -43,6 +43,7 @@ exports.store = function(key, value, expiry, override) {
  * params:
  *	@key
  */
-exports.get = function(key) {
-	return dico[key].value;
+exports.get = function(key, next) {
+	// TODO handle storing in db as a backup of the ram
+	return next(null, dico[key].value);
 }

@@ -92,10 +92,10 @@ exports.applyOperationBulk = function(info, next) {
 }
 
 function checkApplyOperationInput(input, next) {
-	if (!info) return next({status: 400, message: "invalid input"});
-	if (!info.connection) return next({status: 400, message: "missing connection"});
-	if (!info.collection) return next({status: 400, message: "missing collection"});
-	if (!info.selector) return next({status: 400, message: "missing selector"});
+	if (!input) return next({status: 400, message: "invalid input"});
+	if (!input.connection) return next({status: 400, message: "missing connection"});
+	if (!input.collection) return next({status: 400, message: "missing collection"});
+	if (!input.selector) return next({status: 400, message: "missing selector"});
 }
 
 function buildConnectionURI(database, user, password) {

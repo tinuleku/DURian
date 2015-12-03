@@ -1,12 +1,9 @@
 var winston = require("winston");
+var jwt	= require('jwt-simple');
+var cfg = require('../config');
+var moment = require("moment");
 
-//  singleton shared 
-// TODO to be defined as a proper object in a separeted class
-var connectionHandler = {
-	get: function(userId) {
-		return null;
-	}
-};
+var connectionHandler = require("./connection_handler.js");
 
 var extractDataFromToken = function(req, next) {
 	if (!req.headers.authorization) {
@@ -28,12 +25,12 @@ var extractDataFromToken = function(req, next) {
 		return next();
 	}
 	return next(payload);
-}
+};
 
 exports.checkAdmin = function(req, res, next) {
 	// TODO be more restrictive :p
 	return next();
-}
+};
 
 exports.checkLogin = function(req, res, next) {
 	extractDataFromToken(req, function(payload) {
@@ -42,10 +39,15 @@ exports.checkLogin = function(req, res, next) {
 		}
 		req.user = payload.sub;
 		// attach the db connection to the request
-		req.connection = connectionHandler.get(req.user);
-		if (!req.connection) {
-			return res.status(401).send({status: 401, message: "Outdated connection" });
-		}
-		return next();
+		connectionHandler.get(req.user, function(err, connection) {
+			if (err) {
+				winston.error("Checker | error when getting the connection : " + err);
+			}
+			if (!connection) {
+				return res.status(401).send({status: 401, message: "Outdated connection" });
+			}
+			req.connection = connection;
+			return next();
+		});
     });
-}
+};
