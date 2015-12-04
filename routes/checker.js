@@ -3,7 +3,7 @@ var jwt	= require('jwt-simple');
 var cfg = require('../config');
 var moment = require("moment");
 
-var connectionHandler = require("./connection_handler.js");
+var connectionHandler = require("./connection_manager.js");
 
 var extractDataFromToken = function(req, next) {
 	if (!req.headers.authorization) {

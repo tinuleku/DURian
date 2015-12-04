@@ -18,6 +18,7 @@ bower_components/*
 */node_modules/*
 node_modules/*
 coverage/*
+.sass-cache/*
 
 .DS_Store
 

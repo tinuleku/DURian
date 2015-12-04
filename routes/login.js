@@ -3,7 +3,6 @@ var cfg 				= require('../config');
 var jwt					= require('jwt-simple');
 var moment				= require('moment');
 var winston 			= require('winston');
-var request				= require('request');
 
 var checker				= require('./checker.js');
 
