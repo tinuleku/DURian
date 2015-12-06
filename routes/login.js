@@ -9,6 +9,8 @@ var checker				= require('./checker.js');
 var User 				= require('../models/users.js');
 var SvcIndex			= require('../services/index.js');
 
+var ConnectionHandler	= require('./connection_manager.js');
+
 /**
  * Generate a token for user
  */
@@ -65,10 +67,35 @@ module.exports = function(app) {
 	        var credentials = {
 	            database: req.body.database,
 	            user: req.body.username,
-	            password: req.body.password
+	            password: req.body.password,
+	            databaseType: req.body.databaseType
 	        };
 	        SvcIndex.authenticate(credentials, function(data) {
-	             
+	            if (data.status == 200) {
+		            return User.findOne({name: credentials.user | "", database: credentials.database}, function(err, user) {
+			            if (err) {
+				            
+			            }
+			            if (!user) {
+				            winston.info("Route login | user not registered, creating a record");
+				            var user = new User({
+					           	name: credentials.user | "",
+					           	database: credentials.database 
+				            });
+				            user.save(function(err) {
+					            if (err) {
+						            return winston.error("Route Login | error when creating user : " + err);
+					            }
+					            winston.info("Route Login | user " + credentials.user + " created for database " + credentials.database);
+				            });
+			            }
+			            // store the connection
+			            ConnectionHandler.store(user._id, data.connection);
+			            delete data.connection;
+			            res.status(data.status).send(data);
+		            });
+	            }
+	            return res.status(data.status).send(data);
 	        });
 	    });
 	

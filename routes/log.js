@@ -23,10 +23,15 @@ module.exports = function(app) {
 					order: req.params["order"] | "desc"
 				};
 				if (req.params["from"]) {
-					
+					var from = parseInt(req.params["from"]) | 0;
+					options.from = new Date(from);
+				}
+				else {
+					options.from = new Date(0);
 				}
 				if (req.params["until"]) {
-					
+					var until = parseInt(req.params["until"]) | 0;
+					options.until = new Date(until);
 				}
 				winston.query(options, function (err, results) {
 				    if (err) {

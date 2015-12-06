@@ -16,7 +16,8 @@ exports.authenticate = function(info, next) {
 	// check input
 	if (!info) return next({status: 400, message: "invalid input"});
 	if (!info.database) return next({status: 400, message: "missing database"});
-	var connectionURI = buildConnectionURI(info.database, info.user, info.password);
+	var connectionURI = buildConnectionURI(info.database, info.user, info.password, info.databaseType);
+	winston.info(connectionURI);
 	mongodb.MongoClient.connect(connectionURI, function(err, db) {
 		if (err) {
 			winston.error("Services | error when connecting to db " + connectionURI + " : " + err);
@@ -98,13 +99,17 @@ function checkApplyOperationInput(input, next) {
 	if (!input.selector) return next({status: 400, message: "missing selector"});
 }
 
-function buildConnectionURI(database, user, password) {
+function buildConnectionURI(database, user, password, databaseType) {
+	var splits = database.split("://");
+	var url = database;
 	if (user && password) {
-		var splits = database.split("//");
-		if (splits && splits.length > 0) {
-			return splits[0] + user + ":" + password + "@" + splits[1];
+		if(splits.length > 1) {
+			return splits[0] + "://" + user + ":" + password + "@" + splits[1];
 		}
-		winston.error("Services | error when splitting database url : split result = " + splits);	
+		else url = user + ":" + password + "@" + splits[0];
+	}
+	if (splits.length < 2 && databaseType) {
+		return databaseType + "://" + url;
 	}
 	return database;
 }

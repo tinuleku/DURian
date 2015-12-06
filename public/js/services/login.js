@@ -1,7 +1,11 @@
 angular.module("durian.services.login", [])
-.service("LoginService", function($http) {
+.service("loginService", function(apiRoot, $http) {
 	
-	this.authenticate = function(credentials) {
+	this.authenticate = function() {
 		
+	};
+	
+	this.login = function(credentials) {
+		return $http.post(apiRoot + "/login/local", credentials);
 	};
 });

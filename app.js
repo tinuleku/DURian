@@ -46,6 +46,7 @@ connectToDB(function(connected) {
 	var router = express.Router();  					// get an instance of the express Router
 	
 	require("./routes/log.js")(router);
+	require("./routes/login.js")(router);
 	
 	app.use("/api", router);							// Declare the API base route
 	
