@@ -1,0 +1,40 @@
+.smart-log-viewer {
+	font-family: 'Roboto Slab', serif;
+	$backgroundColor: #3b3b3b;
+	color: white;
+	
+	.log-panel {
+		background: $backgroundColor;
+		
+		.log-line {
+			position: relative;
+			font-size: 14px;
+			
+			.timestamp {
+				position: relative;
+				display: inline-block;
+				min-width: 122px;
+				padding-left: 2px;
+			}
+			
+			.level {
+				position: relative;
+				display: inline-block;
+				min-width: 40px;
+				
+				span {
+					border-radius: 3px;
+					padding: 0px 4px;
+				}
+				
+				span.info-level {
+					background: lighten($backgroundColor, 15%);
+				}
+				
+				span.error-level {
+					background: fade-out(#ee5d54, 0.5);
+				}
+			}
+		}
+	}
+}

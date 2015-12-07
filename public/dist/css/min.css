@@ -106,4 +106,32 @@
     -webkit-transform: rotateY(-90deg);
     transform: rotateY(-90deg); }
 
+.smart-log-viewer {
+  font-family: 'Roboto Slab', serif;
+  color: white; }
+  .smart-log-viewer .log-panel {
+    background: #3b3b3b; }
+    .smart-log-viewer .log-panel .log-line {
+      position: relative;
+      font-size: 14px; }
+      .smart-log-viewer .log-panel .log-line .timestamp {
+        position: relative;
+        display: inline-block;
+        min-width: 122px;
+        padding-left: 2px; }
+      .smart-log-viewer .log-panel .log-line .level {
+        position: relative;
+        display: inline-block;
+        min-width: 40px; }
+        .smart-log-viewer .log-panel .log-line .level span {
+          border-radius: 3px;
+          padding: 0px 4px; }
+        .smart-log-viewer .log-panel .log-line .level span.info-level {
+          background: #616161; }
+        .smart-log-viewer .log-panel .log-line .level span.error-level {
+          background: rgba(238, 93, 84, 0.5); }
+
+body > div {
+  font-family: 'Ubuntu'; }
+
 /*# sourceMappingURL=index.css.map */
