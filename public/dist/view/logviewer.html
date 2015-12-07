@@ -1,6 +1,6 @@
 <div class="smart-log-viewer">
-	<div class="log-panel">
-		<div ng-repeat="log in logs">
+	<div class="log-panel" scroll-glue>
+		<div ng-repeat="log in logs | reverse">
 			<span>{{log.timestamp | amDateFormat: 'MM/DD HH:mm:ss.SSS'}}</span>
 			<span ng-if="showLabel">{{log.label}}</span>
 			<span>{{log.level}}</span>

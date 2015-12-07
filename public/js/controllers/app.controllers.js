@@ -1,4 +1,6 @@
 angular.module("durian.controllers", [])
+.controller("HomeCtrl", function() {
+})
 .controller("LoginCtrl", function(loginService, $scope, $stateParams) {
 	$scope.databasesOption = [{
 		name: "MongoDB",

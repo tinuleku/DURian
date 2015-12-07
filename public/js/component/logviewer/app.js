@@ -1,10 +1,12 @@
 angular.module("smart.logviewer", [
 	"ui.router",
 	"angularMoment",
+	"luegg.directives",
 	"smart.urlBuilder",
 	"smart.logviewer.controllers", 
 	"smart.logviewer.services",
-	"smart.logviewer.factories"
+	"smart.logviewer.factories",
+	"smart.logviewer.filters"
 ])
 .provider("logviewer", function() {
 	this.api = "/logs";

@@ -17,7 +17,7 @@ exports.authenticate = function(info, next) {
 	if (!info) return next({status: 400, message: "invalid input"});
 	if (!info.database) return next({status: 400, message: "missing database"});
 	var connectionURI = buildConnectionURI(info.database, info.user, info.password, info.databaseType);
-	winston.info(connectionURI);
+	winston.debug("SvcIndex | connectionURI  = " + connectionURI);
 	mongodb.MongoClient.connect(connectionURI, function(err, db) {
 		if (err) {
 			winston.error("Services | error when connecting to db " + connectionURI + " : " + err);

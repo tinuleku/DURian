@@ -19,7 +19,7 @@ module.exports = function(app) {
 			checker.checkAdmin(req, res, function() {
 				var options = {
 					start: req.params["start"] | 0,
-					limit: req.params["limit"] | 10,
+					limit: req.params["limit"] | 100,
 					order: req.params["order"] | "desc"
 				};
 				if (req.params["from"]) {

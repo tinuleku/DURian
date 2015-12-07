@@ -60,6 +60,7 @@ module.exports = function(grunt) {
 					//"bower_components/angular-sanitize/angular-sanitize.min.js",
 					"bower_components/angular-ui-router/release/angular-ui-router.min.js", 
 					//"bower_components/angular-socket-io/socket.js", // min doesnt work
+					"bower_components/angular-scroll-glue/src/scrollglue.js",
 					"bower_components/moment/min/moment.min.js",
 					"bower_components/angular-moment/angular-moment.js"
 				],
@@ -117,7 +118,7 @@ module.exports = function(grunt) {
 		"copy:generated", 
 		"jshint:dist", 
 		"uglify:dist", 
-		//"concat:libjs", 
+		"concat:libjs", 
 		"concat:js", 
 		"clean:dist", 
 		"useminPrepare", 
