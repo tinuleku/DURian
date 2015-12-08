@@ -108,7 +108,8 @@
 
 .smart-log-viewer {
   font-family: 'Roboto Slab', serif;
-  color: white; }
+  color: white;
+  position: relative; }
   .smart-log-viewer .log-panel {
     background: #3b3b3b; }
     .smart-log-viewer .log-panel .log-line {

@@ -47,6 +47,8 @@ connectToDB(function(connected) {
 	
 	require("./routes/log.js")(router);
 	require("./routes/login.js")(router);
+	require("./routes/record.js")(router);
+	require("./routes/user.js")(router);
 	
 	app.use("/api", router);							// Declare the API base route
 	
