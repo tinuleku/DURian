@@ -1,12 +1,22 @@
 .smart-log-viewer {
 	font-family: 'Roboto Slab', serif;
+	
 	$backgroundColor: #3b3b3b;
+	
+	background: $backgroundColor;
 	color: white;
 	
-	position: relative;
+	position: fixed;
+	bottom: 0;
+	top: 0;
+	left: 0;
+	right: 0;
 	
 	.log-panel {
-		background: $backgroundColor;
+		position: relative;
+		height: 100%;
+		
+		overflow: auto;
 		
 		.log-line {
 			position: relative;
@@ -36,6 +46,36 @@
 				span.error-level {
 					background: fade-out(#ee5d54, 0.5);
 				}
+			}
+		}
+		
+		.loading-panel {
+			padding-bottom: 70px;
+		}
+	}
+	
+	.control-panel {
+		border-top: solid 2px lighten($backgroundColor, 30%);
+		background: $backgroundColor;
+		position: absolute;
+		bottom: 0;
+		width: 100%;
+		height: 40px;
+		z-index: 100;
+		
+		.search-panel {
+			
+			padding: 4px;
+			
+			.search-input {
+				width: 500px;
+				border-radius: 4px;
+				font-size: 20px;
+				background: lighten($backgroundColor, 50%);
+				border: none;
+				height: 30px;
+				padding-top: 2px;
+				padding-bottom: 2px;
 			}
 		}
 	}
