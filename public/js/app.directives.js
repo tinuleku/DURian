@@ -9,7 +9,6 @@ angular.module("durian.directives", [])
         require: 'ngModel',
         controller: function($scope, $timeout) {
             
-            console.log("caca");
             $scope.$watch(function() {
 	            return $scope.alert;
             }, function() {
@@ -29,4 +28,16 @@ angular.module("durian.directives", [])
                     + '{{alert.message}}'
                     + '</div>'
     };
+})
+.directive("ngEnter", function() {
+	return function(scope, element, attrs) {
+        element.bind("keydown keypress", function(event) {
+            if(event.which === 13) {
+                scope.$apply(function(){
+                        scope.$eval(attrs.ngEnter, {'event': event});
+                });
+                event.preventDefault();
+            }
+        });
+    };  
 });

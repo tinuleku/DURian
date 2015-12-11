@@ -1,6 +1,6 @@
 <div class="smart-log-viewer">
 	<div class="log-panel" scroll-glue>
-		<div ng-repeat="log in logs | reverse" class="log-line">
+		<div ng-repeat="log in logs | reverse | filterMessage: textSearch" class="log-line">
 			<div class="timestamp">
 				<span>{{log.timestamp | amDateFormat: 'DD/MM HH:mm:ss.SSS'}}</span>
 			</div>
@@ -10,14 +10,17 @@
 			<div class="level">
 				<span class="{{log.level + '-level'}}">{{log.level}}</span>
 			</div>
-			<span>{{log.message}}</span>
+			<span ng-bind-html="log.message | highlightText: textSearch"></span>
 		</div>
 		<div class="loading-panel">...</div>
 	</div>
 	<div class="control-panel">
 		<form>
 			<div class="search-panel">
-				<input type="text" class="search-input">
+				<input type="text" class="search-input" ng-model="form.search" placeholder="Text search" ng-enter="search()">
+			</div>
+			<div class="date-panel">
+				Coucou
 			</div>
 		</form>
 	</div>
