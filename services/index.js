@@ -53,7 +53,7 @@ exports.applyOperation = function(info, next) {
 			var record = new Record({
 				user: info.user,
 				selector: info.selector,
-				documents: {}
+				documents: {},
 				status: "Draft"
 			});
 			// Check if document

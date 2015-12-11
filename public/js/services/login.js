@@ -1,11 +1,17 @@
 angular.module("durian.services.login", [])
+.service("redirectionService", function() {
+	var redirectionUrl;
+	var defaultUrl = "/dashboard";
+	
+	this.setRedirection = function(url) {
+		redirectionUrl = url;
+	};
+	
+	this.getRedirection = function() {
+		if (redirectionUrl) return redirectionUrl;
+		return defaultUrl;
+	};
+})
 .service("loginService", function(apiRoot, $http) {
-	
-	this.authenticate = function() {
-		
-	};
-	
-	this.login = function(credentials) {
-		return $http.post(apiRoot + "/login/local", credentials);
-	};
+
 });

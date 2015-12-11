@@ -1,7 +1,9 @@
-angular.module("durian.controllers", [])
+angular.module("durian.controllers", [
+	"durian.controllers.dashboard"
+])
 .controller("HomeCtrl", function() {
 })
-.controller("LoginCtrl", function(loginService, $scope, $stateParams) {
+.controller("LoginCtrl", function(loginService, $scope, $stateParams, redirectionService, $auth, $location) {
 	$scope.databasesOption = [{
 		name: "MongoDB",
 		type: "mongodb",
@@ -53,12 +55,13 @@ angular.module("durian.controllers", [])
 			message: "Credentials sent ..."
 		};
 		
-		loginService.login($scope.form)
-		.success(function(data) {
-			// redirection to the home page or the stored page
-			
+		$auth.login($scope.form)
+		.then(function() {
+        	$location.path(redirectionService.getRedirection());
 		})
-		.error(function(data) {
+        .catch(function(response) {
+			var message = "An unexpected error occurred. Please try again in a short while";
+			if (response && response.data) message = response.data.message; 
 			$scope.alert = {
 				type: "alert",
 				message: data.message,

@@ -1,6 +1,7 @@
 angular.module("durian", [
 	// libs
 	"ui.router",
+	"satellizer",
 	"smart.logviewer",
 	"smart.urlBuilder",
 	// app
@@ -8,15 +9,27 @@ angular.module("durian", [
 	"durian.services",
 	"durian.directives"
 ])
-.config(function($provide, $stateProvider, $urlRouterProvider, logviewerProvider){
-    logviewerProvider.api = "/api/logs";
+.config(function($provide, $stateProvider, $urlRouterProvider, logviewerProvider, $authProvider){
+  	
+  	// API
+    var apiRoot = "/api";
+    $provide.value('apiRoot', apiRoot);
     
-    $provide.value('apiRoot', "/api");
+    // Logs
+    logviewerProvider.api = apiRoot + "/logs";
     
-    $urlRouterProvider.otherwise('/');
-    
+    // Satellizer config
+	$authProvider.loginUrl = apiRoot + "/login/local"; //URL to API server
+	
     // default routing
-	$stateProvider
+	$urlRouterProvider.otherwise('/');
+    
+    $stateProvider
+		.state("dashboard", {
+			url: "/dashboard",
+			templateUrl: "/view/dashboard.html",
+			controller: "DashboardCtrl"
+		})
 		.state("home", {
 			url: "/",
 			templateUrl: "/view/home.html",

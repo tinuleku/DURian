@@ -9,7 +9,6 @@ angular.module("smart.logviewer.controllers", [])
 	
 	function searchLogs() {
 		logService.getLogs({
-			search: $scope.form.search
 		})
 		.success(function(logs) {
 			$scope.logs = logs;

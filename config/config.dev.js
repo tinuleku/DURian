@@ -10,7 +10,8 @@ var config = {
 	mongodb: {
 		uri: "mongodb://localhost:27017/durian",
 	},
-	port: 3004
+	port: 3004,
+	secret: "mysecretpwd"
 };
 
 module.exports = config;

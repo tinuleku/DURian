@@ -71,6 +71,7 @@ module.exports = function(app) {
 	            databaseType: req.body.databaseType
 	        };
 	        SvcIndex.authenticate(credentials, function(data) {
+	            winston.info(data);
 	            if (data.status == 200) {
 		            return User.findOne({name: credentials.user | "", database: credentials.database}, function(err, user) {
 			            if (err) {
@@ -92,6 +93,8 @@ module.exports = function(app) {
 			            // store the connection
 			            ConnectionHandler.store(user._id, data.connection);
 			            delete data.connection;
+			            // Create token and add it in the response
+			            data.token = createJWT(user._id);
 			            res.status(data.status).send(data);
 		            });
 	            }
