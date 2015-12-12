@@ -3,11 +3,12 @@ angular.module("durian", [
 	"ui.router",
 	"satellizer",
 	"smart.logviewer",
-	"smart.urlBuilder",
+	"smart.tools",
 	// app
 	"durian.controllers",
 	"durian.services",
-	"durian.directives"
+	"durian.directives",
+	"durian.factories"
 ])
 .config(function($provide, $stateProvider, $urlRouterProvider, logviewerProvider, $authProvider){
   	

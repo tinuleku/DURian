@@ -44,6 +44,8 @@ exports.store = function(key, value, expiry, override) {
  *	@key
  */
 exports.get = function(key, next) {
+	var item = dico[key];
+	if (item) return next(null, item.value)
 	// TODO handle storing in db as a backup of the ram
-	return next(null, dico[key].value);
+	return next(null, null);
 }

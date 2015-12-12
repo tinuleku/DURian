@@ -2,7 +2,7 @@ angular.module("smart.logviewer", [
 	"ui.router",
 	"angularMoment",
 	"luegg.directives",
-	"smart.urlBuilder",
+	"smart.tools",
 	"smart.logviewer.controllers", 
 	"smart.logviewer.services",
 	"smart.logviewer.factories",

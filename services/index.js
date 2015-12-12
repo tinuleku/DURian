@@ -21,7 +21,7 @@ exports.authenticate = function(info, next) {
 	mongodb.MongoClient.connect(connectionURI, function(err, db) {
 		if (err) {
 			winston.error("Services | error when connecting to db " + connectionURI + " : " + err);
-			return next({status: 400, message: "invalid connection data"});
+			return next({status: 400, message: "Incorrect data provided"});
 		}
 		winston.info("Services | connected to database " + db.databaseName);
 		return next({status: 200, connection: db});

@@ -1,0 +1,1 @@
+angular.module("durian.services.record", []);

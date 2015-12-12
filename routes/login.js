@@ -18,7 +18,7 @@ function createJWT(user_id) {
 	var payload = {
 		sub: user_id,
 		iat: moment().unix(),
-		exp: moment().add(14, 'days').unix()
+		exp: moment().add(1, 'hours').unix()
 	};
 	return jwt.encode(payload, cfg.secret);
 }
@@ -71,11 +71,10 @@ module.exports = function(app) {
 	            databaseType: req.body.databaseType
 	        };
 	        SvcIndex.authenticate(credentials, function(data) {
-	            winston.info(data);
 	            if (data.status == 200) {
 		            return User.findOne({name: credentials.user | "", database: credentials.database}, function(err, user) {
 			            if (err) {
-				            
+				            winston.error("Route Login | error when finding user : " + err);
 			            }
 			            if (!user) {
 				            winston.info("Route login | user not registered, creating a record");
@@ -89,12 +88,17 @@ module.exports = function(app) {
 					            }
 					            winston.info("Route Login | user " + credentials.user + " created for database " + credentials.database);
 				            });
+				            data.message = "Successfully signed up";
+			            }
+			            else {
+				            data.message = "Successfully logged in";
 			            }
 			            // store the connection
-			            ConnectionHandler.store(user._id, data.connection);
+			            ConnectionHandler.store(user._id, data.connection, moment().add(1, "hours").toDate());
 			            delete data.connection;
 			            // Create token and add it in the response
 			            data.token = createJWT(user._id);
+			            data.user = user._id;
 			            res.status(data.status).send(data);
 		            });
 	            }

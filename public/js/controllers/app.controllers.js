@@ -3,7 +3,7 @@ angular.module("durian.controllers", [
 ])
 .controller("HomeCtrl", function() {
 })
-.controller("LoginCtrl", function(loginService, $scope, $stateParams, redirectionService, $auth, $location) {
+.controller("LoginCtrl", function($scope, $stateParams, redirectionService, userModel, $auth, $location) {
 	$scope.databasesOption = [{
 		name: "MongoDB",
 		type: "mongodb",
@@ -38,7 +38,6 @@ angular.module("durian.controllers", [
 	};
 	
 	$scope.login = function() {
-		console.log($scope.form);
 		// checkForm
 		if (!$scope.form.database) {
 			$scope.alert = {
@@ -56,15 +55,17 @@ angular.module("durian.controllers", [
 		};
 		
 		$auth.login($scope.form)
-		.then(function() {
-        	$location.path(redirectionService.getRedirection());
+		.then(function(data) {
+			console.log(data);
+			userModel.userId = data.userId;
+        	redirectionService.redirect();
 		})
         .catch(function(response) {
 			var message = "An unexpected error occurred. Please try again in a short while";
 			if (response && response.data) message = response.data.message; 
 			$scope.alert = {
 				type: "alert",
-				message: data.message,
+				message: message,
 				timeout: 8000
 			};
 		});

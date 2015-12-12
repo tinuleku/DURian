@@ -5,7 +5,7 @@ var moment = require("moment");
 
 var connectionHandler = require("./connection_manager.js");
 
-var extractDataFromToken = function(req, next) {
+var extractDataFromToken = exports.extractDataFromToken = function(req, next) {
 	if (!req.headers.authorization) {
 		winston.debug("no authorization header");
 		return next();
