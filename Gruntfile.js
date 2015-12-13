@@ -38,14 +38,14 @@ module.exports = function(grunt) {
 			options: {
 				laxbreak: true	
 			},
-			dist: ["public/js/**/*.js", "!public/js/lib.js", "!**/*.min.js", "!**/min.js"],
+			dist: ["public/js/app/**/*.js", "!public/js/lib.js", "!**/*.min.js", "!**/min.js"],
 		},
 		uglify: {
 			options: {
 				mangle: false,
 			},
 			dist: {
-				src : ["public/js/app.js", "public/js/app.*.js", "!public/js/v1/*.js", "public/js/**/*.js", "!public/js/lib.js", "!public/js/test/**/*.js", "!**/*.min.js", "!**/min.js"],
+				src : ["public/js/app/app.js", "public/js/app/**/*.js", "!**/*min.js"],
 				dest: "public/js/min.js"
 			}
 		},
@@ -95,7 +95,7 @@ module.exports = function(grunt) {
 		},
 		watch: {
 			js: {
-				files: ["public/js/**/*.js", "public/js/*.js", "!**/*.min.js", "!**/min.js"],
+				files: ["public/js/app/**/*.js", "!**/*min.js"],
 				tasks: ["jshint:dist", "uglify:dist", "concat:libjs", "concat:js"]
 			},
 			sass: {
