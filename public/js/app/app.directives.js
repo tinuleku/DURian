@@ -9,13 +9,20 @@ angular.module("durian.directives", [])
         require: 'ngModel',
         controller: function($scope, $timeout) {
             
-            $scope.$watch(function() {
-	            return $scope.alert;
-            }, function() {
+            function displayAlert() {
 	            $scope.visible = !!$scope.alert;
 	            if ($scope.visible && $scope.alert.timeout) {
 		            $timeout($scope.close, $scope.alert.timeout);
 	            }
+            }
+            
+            //displayAlert();
+            
+            $scope.$watch(function() {
+	            return $scope.alert;
+            }, function() {
+	            $scope.changed = true;
+	            displayAlert();
             });
             
             $scope.close = function() {

@@ -23,7 +23,7 @@ angular.module("smart.logviewer.controllers", [])
 	var withRegex = false;
 	$scope.search = function() {
 		if (!withRegex) {
-			$scope.textSearch = $scope.form.search.replace(/[\|\[\]\(\)\.\$\^]/g, "\\$&");
+			$scope.textSearch = $scope.form.search.replace(/[\|\[\]\(\)\.\$\^\*]/g, "\\$&");
 		}
 		else {
 			try {

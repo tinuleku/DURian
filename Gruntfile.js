@@ -45,7 +45,7 @@ module.exports = function(grunt) {
 				mangle: false,
 			},
 			dist: {
-				src : ["public/js/app.js", "public/js/app.*.js", "!public/js/v1/*.js", "public/js/**/*.js", "!public/js/lib.js", "!**/*.min.js", "!**/min.js"],
+				src : ["public/js/app.js", "public/js/app.*.js", "!public/js/v1/*.js", "public/js/**/*.js", "!public/js/lib.js", "!public/js/test/**/*.js", "!**/*.min.js", "!**/min.js"],
 				dest: "public/js/min.js"
 			}
 		},

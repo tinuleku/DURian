@@ -1,0 +1,17 @@
+{
+  "name": "durian",
+  "description": "",
+  "version": "0.0.0",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "angular": "~1.4.8",
+    "foundation": "~5.5.3",
+    "font-awesome": "~4.5.0",
+    "satellizer": "~0.13.1",
+    "angular-ui-router": "~0.2.15",
+    "angular-scroll-glue": "~2.0.6",
+    "angular-moment": "~0.10.3",
+    "angular-mocks": "~1.4.8"
+  }
+}
