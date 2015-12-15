@@ -1,5 +1,6 @@
 angular.module("durian.controllers", [
-	"durian.controllers.dashboard"
+	"durian.controllers.dashboard",
+	"durian.controllers.explorer"
 ])
 .controller("HomeCtrl", function() {
 })

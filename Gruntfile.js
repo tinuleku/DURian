@@ -96,7 +96,7 @@ module.exports = function(grunt) {
 		watch: {
 			js: {
 				files: ["public/js/app/**/*.js", "!**/*min.js"],
-				tasks: ["jshint:dist", "uglify:dist", "concat:libjs", "concat:js"]
+				tasks: ["copy:generated", "jshint:dist", "uglify:dist", "concat:js", "clean:dist", "useminPrepare", "filerev:js", "usemin"]
 			},
 			sass: {
 				files: ["public/sass/**/*.scss", "public/sass/*.scss"],
@@ -127,5 +127,6 @@ module.exports = function(grunt) {
 		"usemin"
 	]);
 	
-	grunt.registerTask("dev-css", ["concat:libcss", "sass:dist", "concat:css", "watch:sass"])
+	grunt.registerTask("dev-css", ["concat:libcss", "sass:dist", "concat:css", "watch:sass"]);
+	grunt.registerTask("dev-js", ["watch:js"]);
 };

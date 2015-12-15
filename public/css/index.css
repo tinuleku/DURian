@@ -102,6 +102,9 @@
     -webkit-transform: rotateY(-90deg);
     transform: rotateY(-90deg); }
 
+.explorer-page .search-panel {
+  border-bottom: #b7b7b7 solid 2px; }
+
 .smart-log-viewer {
   font-family: 'Roboto Slab', serif;
   background: #3b3b3b;

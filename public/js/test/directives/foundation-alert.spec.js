@@ -44,6 +44,7 @@ describe("directive : foundationAlert", function() {
 			type: "info",
 			message: "my message"
 		});
+		expect(element.find("div").hasClass("info")).toBe(true);
 		expect(element.text()).toEqual("my message");
 	});
 	

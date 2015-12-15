@@ -31,6 +31,11 @@ angular.module("durian", [
 			templateUrl: "/view/dashboard.html",
 			controller: "DashboardCtrl"
 		})
+		.state("explorer", {
+			url: "/explorer",
+			templateUrl: "/view/explorer.html",
+			controller: "DatabaseViewerCtrl"
+		})
 		.state("home", {
 			url: "/",
 			templateUrl: "/view/home.html",
@@ -41,5 +46,13 @@ angular.module("durian", [
 			templateUrl: "/view/login.html",
 			controller: "LoginCtrl"
 		});
+})
+.filter('capitalize', function() {
+	return function(input, all) {
+    	var reg = (all) ? /([^\W_]+[^\s-]*) */g : /([^\W_]+[^\s-]*)/;
+    	return (!!input) ? input.replace(reg, function(txt){
+    		return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+    	}) : '';
+    };
 })
 .controller("Ctrl", function() {});

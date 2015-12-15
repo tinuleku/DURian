@@ -45,6 +45,7 @@ function connectToDB(next) {
 connectToDB(function(connected) {
 	var router = express.Router();  					// get an instance of the express Router
 	
+	require("./routes/database.js")(router);
 	require("./routes/log.js")(router);
 	require("./routes/login.js")(router);
 	require("./routes/record.js")(router);

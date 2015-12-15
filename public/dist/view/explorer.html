@@ -1,0 +1,47 @@
+<div class="explorer-page">
+	Explorer
+	<div class="search-panel">
+		<form>
+			<div class="row">
+				<div class="small-4 large-3 columns">
+					<label>Collection
+						<select ng-model="form.collection" class="radius">
+							<option value="{{collection.name}}" ng-repeat="collection in collections">{{collection.name}}</option>
+						</select>
+					</label>
+				</div>
+				<div class="small-8 large-9 columns">
+					<div class="row collapse postfix-radius">
+						<label>Query</label>
+						<div class="small-10 columns">
+							<input type="text" placeholder="Selector" />
+						</div>
+						<a href class="small-2 columns" ng-click="search()">
+							<span class="postfix">Search</span>
+						</a>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+	<div class="result-panel" ng-if="result">
+		<div class="result-header">
+			<h3>
+				{{result.collection | capitalize}} 
+				<small>
+					<ng-pluralize count="result.count" when="{'0': 'no document', 'one': '1 document', 'other': '{} documents'}"></ng-pluralize>
+				</small>
+			</h3>
+		</div>
+		<div class="result-content">
+			<div class="document-list">
+				<a href class="document" ng-click="selectDocument(document)" ng-repeat="document in result.documents">
+					{{document | json}}
+				</a>
+			</div>
+			<div class="document-view">
+				{{selectedDocument}}
+			</div>
+		</div>
+	</div>
+</div>
