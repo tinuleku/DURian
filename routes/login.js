@@ -77,9 +77,9 @@ module.exports = function(app) {
 				            winston.error("Route Login | error when finding user : " + err);
 			            }
 			            if (!user) {
-				            winston.info("Route login | user not registered, creating a record");
+				            winston.info("Route Login | user not registered, creating a record");
 				            var user = new User({
-					           	name: credentials.user | "",
+					           	name: credentials.user,
 					           	database: credentials.database 
 				            });
 				            user.save(function(err) {

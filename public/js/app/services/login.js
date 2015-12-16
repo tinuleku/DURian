@@ -10,6 +10,10 @@ angular.module("durian.services.login", [])
 		$location.path(loginUrl);
 	};
 	
+	this.setRedirection = function(url) {
+		if (loginUrl != url) redirectionUrl = url;
+	};
+	
 	this.redirect = function() {
 		var url = defaultUrl;
 		if (redirectionUrl) url = redirectionUrl;

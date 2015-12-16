@@ -47,6 +47,24 @@ angular.module("durian", [
 			controller: "LoginCtrl"
 		});
 })
+.run(function($rootScope, $auth, redirectionService, $location, $state) {
+	$rootScope.$on('$stateChangeStart', function(ev, toState, toParams){ 
+	    
+	    // every state except login requires an authentication
+	    if (isAdminState(toState)) {
+			if (!$auth.isAuthenticated()) {
+				console.log($state.href(toState, toParams));
+	    		redirectionService.setRedirection($state.href(toState, toParams));
+				ev.preventDefault();
+				$state.go("login");
+			}
+		}
+	    
+	    function isAdminState(state) {
+		    return !(state === '/login' || state.name === 'login');
+	    }
+	});
+})
 .filter('capitalize', function() {
 	return function(input, all) {
     	var reg = (all) ? /([^\W_]+[^\s-]*) */g : /([^\W_]+[^\s-]*)/;
