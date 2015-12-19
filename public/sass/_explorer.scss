@@ -1,11 +1,33 @@
 .explorer-page {
 	
+	padding: 0px;
+	min-height: 100%;
+	
 	.search-panel {
+		position: absolute;
+		height: 86px;
+		width: 100%;
 		padding-top: 10px;
 		border-bottom: $greyColor solid 2px;
 	}
 	
 	.result-panel {
+		
+		position: absolute;
+		top: 86px;
+		bottom: 0px;
+		left: 0px;
+		right: 0px;
+		display: -webkit-flex;
+		display: flex;
+		-webkit-flex-direction: column;
+		flex-direction: column;
+		-webkit-flex-wrap: nowrap;
+		flex-wrap: nowrap;
+		
+		.result-header {
+			margin-left: 5px;
+		}
 		
 		.result-content {
 			
@@ -14,8 +36,8 @@
 			position: relative;
 			
 			.document {
-				width: 120px;
-				height: 120px;
+				width: 130px;
+				height: 130px;
 				overflow: hidden;
 				margin-left: 5px;
 				margin-bottom: 5px;
@@ -26,6 +48,10 @@
 				font-size: 12px;
 				padding: 3px;
 				
+				.overview {
+					color: $greyColor;
+				}
+				
 				.caption {
 					position: absolute;
 					z-index: 10;
@@ -33,13 +59,88 @@
 					left: 0px;
 					width: 100%;
 					height: 100%;
-					background: transparent;
+					background: transparentize(white, 0.4);
+					color: darken($greyColor, 30%);
+					
+					.title {
+						position: absolute;
+						font-size: 11px;
+						bottom: 0px;
+						left: 3px;
+						transform: rotate(-45deg);
+						transform-origin: left top 0;
+						padding-left: 2px;
+						padding-right: 2px;
+						border-radius: 3px;
+						background: transparentize(white, 0.4);
+					}
 					
 					&:hover {
-						background: transparentize($greyColor, 0.7);
+						background: transparentize($greyColor, 0.4);
 					}
 				}
 			}
+			
+			.document.selected {
+				
+				.caption {
+					background: transparentize(#b7daf2, 0.4);
+					
+					&:hover {
+						background: transparentize(#b7daf2, 0.4);
+					}
+				}
+			}
+		}
+		
+		.document-view {
+			padding: 10px;
+			color: darken($greyColor, 30%);
+			overflow-x: auto;
+		}
+	}
+	
+	.expendable-sidebar-panel {
+		// use the full space
+		position: absolute;
+		min-height: 100%;
+		// Flex layout
+		display: -webkit-flex;
+		display: flex;
+		-webkit-flex-direction: row;
+		flex-direction: row;
+		//-webkit-flex-wrap: nowrap;
+		//flex-wrap: nowrap;
+		-webkit-align-content: stretch;
+		align-content: stretch;
+		
+		.center-panel {
+			
+		}
+		
+		.sidebar-panel {
+			border-left: solid 2px $greyColor;
+			margin-left: -2px;
+			min-width: 35px;
+			
+			.toggle-panel {
+				font-size: 20px;
+				text-align: center;
+				margin-top: 10px;
+				width: 30px;
+			}
+		}
+	}
+	
+	.expendable-sidebar-panel.expended {
+		$sidebarWidth: 380px;
+		
+		.center-panel {
+			//margin-right: $sidebarWidth;
+		}
+		
+		.sidebar-panel {
+			min-width: $sidebarWidth;
 		}
 	}
 }

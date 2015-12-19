@@ -5,14 +5,18 @@ angular.module("durian.controllers.explorer", [])
 		collection: "log",
 	};
 	
+	$scope.expended = false;
+	
 	$scope.search = function() {
 		
 		databaseService.getDocuments({
 			collection: $scope.form.collection,
 			selector: $scope.form.selector,
+			limit: 20,
 			count: true
 		})
 		.success(function(result) {
+			delete $scope.selectedDocument;
 			$scope.result = result;
 			$scope.result.collection = $scope.form.collection;
 		});
@@ -20,6 +24,10 @@ angular.module("durian.controllers.explorer", [])
 	
 	$scope.selectDocument = function(document) {
 		$scope.selectedDocument = document;
+	};
+	
+	$scope.toggleSidebar = function() {
+		$scope.expended = !$scope.expended;
 	};
 	
 	// get the list of collections

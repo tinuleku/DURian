@@ -61,7 +61,7 @@ angular.module("durian", [
 		}
 	    
 	    function isAdminState(state) {
-		    return !(state === '/login' || state.name === 'login');
+		    return !(state === '/login' || state.name === 'login' || state === "/" || state.name === "home");
 	    }
 	});
 })

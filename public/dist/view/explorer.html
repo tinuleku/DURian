@@ -24,25 +24,38 @@
 		</form>
 	</div>
 	<div class="result-panel" ng-if="result">
-		<div class="result-header">
-			<h3>
-				{{result.collection | capitalize}} 
-				<small>
-					<ng-pluralize count="result.count" when="{'0': 'no document', 'one': '1 document', 'other': '{} documents'}"></ng-pluralize>
-				</small>
-			</h3>
-		</div>
-		<div class="result-content">
-			<div class="document-list">
-				<a href class="document" ng-click="selectDocument(document)" ng-repeat="document in result.documents">
-					{{document | json}}
-					
-					<div class="caption">
+		<div class="expendable-sidebar-panel" ng-class="{'expended': expended}">
+			<div class="center-panel">	
+				<div class="result-header">
+					<h3>
+						{{result.collection | capitalize}} 
+						<small>
+							<ng-pluralize count="result.count" when="{'0': 'no document', 'one': '1 document', 'other': '{} documents'}"></ng-pluralize>
+						</small>
+					</h3>
+				</div>
+				<div class="result-content">
+					<div class="document-list">
+						<a href class="document" ng-class="{'selected': document._id == selectedDocument._id }" ng-click="selectDocument(document)" ng-repeat="document in result.documents">
+							<div class="overview">
+								{{document | json}}
+							</div>
+							<div class="caption">
+								<div class="title">{{document._id}}</div>
+							</div>
+						</a>
 					</div>
-				</a>
+				</div>
 			</div>
-			<div class="document-view">
-				{{selectedDocument}}
+			<div class="sidebar-panel">	
+				<div class="toggle-panel">
+					<a href ng-click="toggleSidebar()">
+						<i class="fa" ng-class="{'fa-angle-double-right': expended, 'fa-angle-double-left': !expended}"></i>
+					</a>
+				</div>
+				<div class="document-view" ng-if="expended">
+					<pre ng-if="selectedDocument">{{selectedDocument | json}}</pre>
+				</div>
 			</div>
 		</div>
 	</div>
