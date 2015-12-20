@@ -3,6 +3,12 @@
 	padding: 0px;
 	min-height: 100%;
 	
+	// common
+	form input, form select, form a span {
+		border-width: 2px;
+		border-color: $greyColor;
+	}
+	
 	.search-panel {
 		position: absolute;
 		height: 86px;
@@ -34,60 +40,70 @@
 			margin-right: 5px;
 			margin-top: 5px;
 			position: relative;
+			text-align: left;
 			
-			.document {
-				width: 130px;
-				height: 130px;
-				overflow: hidden;
-				margin-left: 5px;
-				margin-bottom: 5px;
-				border-radius: 5px;
-				border: solid 2px $greyColor; 
-				display: inline-block;
-				position: relative;
-				font-size: 12px;
-				padding: 3px;
+			.document-list {
+				display: -webkit-flex;
+				display: flex;
+				-webkit-flex-flow: row;
+				flex-flow: row;
+				-webkit-flex-wrap: wrap;
+				flex-wrap: wrap;
 				
-				.overview {
-					color: $greyColor;
-				}
-				
-				.caption {
-					position: absolute;
-					z-index: 10;
-					top: 0px;
-					left: 0px;
-					width: 100%;
-					height: 100%;
-					background: transparentize(white, 0.4);
-					color: darken($greyColor, 30%);
+				.document {
+					width: 130px;
+					height: 130px;
+					overflow: hidden;
+					margin-left: 5px;
+					margin-bottom: 5px;
+					border-radius: 5px;
+					border: solid 2px $greyColor; 
+					display: inline-block;
+					position: relative;
+					font-size: 12px;
+					padding: 3px;
 					
-					.title {
+					.overview {
+						color: $greyColor;
+					}
+					
+					.caption {
 						position: absolute;
-						font-size: 11px;
-						bottom: 0px;
-						left: 3px;
-						transform: rotate(-45deg);
-						transform-origin: left top 0;
-						padding-left: 2px;
-						padding-right: 2px;
-						border-radius: 3px;
+						z-index: 10;
+						top: 0px;
+						left: 0px;
+						width: 100%;
+						height: 100%;
 						background: transparentize(white, 0.4);
-					}
-					
-					&:hover {
-						background: transparentize($greyColor, 0.4);
+						color: darken($greyColor, 30%);
+						
+						.title {
+							position: absolute;
+							font-size: 11px;
+							bottom: 0px;
+							left: 3px;
+							transform: rotate(-45deg);
+							transform-origin: left top 0;
+							padding-left: 2px;
+							padding-right: 2px;
+							border-radius: 3px;
+							background: transparentize(white, 0.4);
+						}
+						
+						&:hover {
+							background: transparentize($greyColor, 0.4);
+						}
 					}
 				}
-			}
-			
-			.document.selected {
 				
-				.caption {
-					background: transparentize(#b7daf2, 0.4);
+				.document.selected {
 					
-					&:hover {
+					.caption {
 						background: transparentize(#b7daf2, 0.4);
+						
+						&:hover {
+							background: transparentize(#b7daf2, 0.4);
+						}
 					}
 				}
 			}
@@ -104,24 +120,27 @@
 		// use the full space
 		position: absolute;
 		min-height: 100%;
+		width: 100%;
 		// Flex layout
 		display: -webkit-flex;
 		display: flex;
-		-webkit-flex-direction: row;
-		flex-direction: row;
-		//-webkit-flex-wrap: nowrap;
-		//flex-wrap: nowrap;
-		-webkit-align-content: stretch;
-		align-content: stretch;
+		-webkit-flex-flow: row;
+		flex-flow: row;
+		-webkit-align-items: stretch;
+		align-items: stretch;
 		
 		.center-panel {
-			
+			flex: 2; /* take the full space */
 		}
 		
 		.sidebar-panel {
 			border-left: solid 2px $greyColor;
 			margin-left: -2px;
 			min-width: 35px;
+			max-width: 35px;
+			/*flex-grow: 0;
+			-webkit-flex: 0 0 35px;
+			flex: 0 0 35px;*/
 			
 			.toggle-panel {
 				font-size: 20px;
@@ -133,7 +152,7 @@
 	}
 	
 	.expendable-sidebar-panel.expended {
-		$sidebarWidth: 380px;
+		$sidebarWidth: 400px;
 		
 		.center-panel {
 			//margin-right: $sidebarWidth;
