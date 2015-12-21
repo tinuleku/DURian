@@ -72,14 +72,15 @@ module.exports = function(app) {
 	        };
 	        SvcIndex.authenticate(credentials, function(data) {
 	            if (data.status == 200) {
-		            return User.findOne({name: credentials.user | "", database: credentials.database}, function(err, user) {
+		            var username = credentials.user ? credentials.user : "";
+		            return User.findOne({name: username, database: credentials.database}, function(err, user) {
 			            if (err) {
 				            winston.error("Route Login | error when finding user : " + err);
 			            }
 			            if (!user) {
 				            winston.info("Route Login | user not registered, creating a record");
 				            var user = new User({
-					           	name: credentials.user,
+					           	name: username,
 					           	database: credentials.database 
 				            });
 				            user.save(function(err) {

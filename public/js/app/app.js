@@ -10,6 +10,21 @@ angular.module("durian", [
 	"durian.directives",
 	"durian.factories"
 ])
+.factory("APIInterceptor", function($q, redirectionService){
+    return {
+        responseError: function(rejection) {
+            if (rejection.status === 401) {
+                // redirect to login page
+                redirectionService.redirectToLogin();
+            }
+            return $q.reject(rejection);
+        }
+    };
+})
+.config(function($httpProvider) {
+	// Config for redirection on unauthorized API call
+	$httpProvider.interceptors.push("APIInterceptor");	
+})
 .config(function($provide, $stateProvider, $urlRouterProvider, logviewerProvider, $authProvider){
   	
   	// API
@@ -49,19 +64,18 @@ angular.module("durian", [
 })
 .run(function($rootScope, $auth, redirectionService, $location, $state) {
 	$rootScope.$on('$stateChangeStart', function(ev, toState, toParams){ 
-	    
+	    if (typeof toState === "string") return console.error("App | toState is not an object : ", toState);
 	    // every state except login requires an authentication
-	    if (isAdminState(toState)) {
+	    if (isAuthorisedState(toState)) {
 			if (!$auth.isAuthenticated()) {
-				console.log($state.href(toState, toParams));
-	    		redirectionService.setRedirection($state.href(toState, toParams));
+				redirectionService.setRedirectionState(toState, toParams);
 				ev.preventDefault();
 				$state.go("login");
 			}
 		}
 	    
-	    function isAdminState(state) {
-		    return !(state === '/login' || state.name === 'login' || state === "/" || state.name === "home");
+	    function isAuthorisedState(state) {
+		    return !(state.name === 'login' || state.name === "home");
 	    }
 	});
 })

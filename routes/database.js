@@ -26,7 +26,8 @@ module.exports = function(app) {
 			var options = {
 				collection: req.query.collection,
 				selector: selector,
-				limit: parseInt(req.query.limit) | 10,
+				limit: parseInt(req.query.limit) || 10,
+				skip: parseInt(req.query.skip) || 0,
 				count: req.query.count == "true"
 			};
 			return SvcDatabase.getDocuments(req.connection, options, simpleResponse(res));

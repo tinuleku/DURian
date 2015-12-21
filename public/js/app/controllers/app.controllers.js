@@ -57,7 +57,6 @@ angular.module("durian.controllers", [
 		
 		$auth.login($scope.form)
 		.then(function(data) {
-			console.log(data);
 			userModel.userId = data.userId;
         	redirectionService.redirect();
 		})
