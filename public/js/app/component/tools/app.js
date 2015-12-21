@@ -24,7 +24,7 @@ angular.module("smart.tools", [])
 		when: function(data) {
 			var deferred = $q.when(data);
 			
-			this.decorate(deferred.promise);
+			this.decorate(deferred);
 			
 			return deferred;
 		}

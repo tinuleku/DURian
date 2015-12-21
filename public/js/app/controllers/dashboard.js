@@ -1,5 +1,5 @@
 angular.module("durian.controllers.dashboard", [])
-.controller("DashboardCtrl", function(userService) {
+.controller("DashboardCtrl", function(userService, $scope) {
 	
 	userService.getUserId()
 	.success(function(userId) {
