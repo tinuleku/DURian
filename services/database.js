@@ -1,5 +1,29 @@
 var winston = require("winston");
 
+/**
+ * Get database stats summary
+ */
+exports.getStats = function(connection, next) {
+	winston.info("Svc Database | get database stats");
+	connection.stats(function(err, stats) {
+		if (err) {
+			winston.error("Svc Database | error when retrieving stats from database " + connection.databaseName + " : " + err);
+			return next({status: 500, message: "internal server error"});
+		}
+		var summary = {
+			name: connection.databaseName,
+			collections: stats.collections,
+			objects: stats.objects,
+			dataSize: stats.dataSize,
+			storageSize: stats.storageSize
+		};
+		return next({status: 200, stats: summary});
+	});
+};
+
+/**
+ * Query documents
+ */
 exports.getDocuments = function(connection, info, next) {
 	winston.info("Svc Database | get documents");
 	if (!info.collection) return next({status: 400, message: "missing collection"});
@@ -23,6 +47,9 @@ exports.getDocuments = function(connection, info, next) {
 	});
 };
 
+/**
+ * Get collection list
+ */
 exports.getCollections = function(connection, next) {
 	winston.info("Svc Database | get collections");
 	if (!connection) {

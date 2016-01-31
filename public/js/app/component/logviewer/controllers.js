@@ -7,18 +7,34 @@ angular.module("smart.logviewer.controllers", [])
 		search: ""
 	};
 	
+	$scope.loadPreviousLogs = function(item, next) {
+		var selector =  {};
+		if (item && item.timestamp) {
+			selector.until = Date.parse(item.timestamp);
+		}
+		logService.getLogs(selector)
+		.success(next);
+	};
+	
+	$scope.loadNextLogs = function(item, next) {
+		/*logService.getLogs({
+		})
+		.success(next);*/
+		next([]);
+	};
+	
 	function searchLogs() {
 		logService.getLogs({
 		})
 		.success(function(logs) {
-			$scope.logs = logs;
-			$scope.logs.forEach(function(log) {
+			$scope.logsAPI.items = logs;
+			$scope.logsAPI.items.forEach(function(log) {
 				if (log.label) $scope.showLabel = true;
 			});
 		});
 	}
 	
-	searchLogs();
+	//searchLogs();
 	
 	var withRegex = false;
 	$scope.search = function() {

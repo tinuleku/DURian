@@ -6,7 +6,6 @@ angular.module("durian.directives", [])
         scope: {
             alert: "="
         },
-        require: 'ngModel',
         controller: function($scope, $timeout) {
             
             function displayAlert() {

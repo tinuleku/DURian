@@ -6,7 +6,8 @@ angular.module("smart.logviewer", [
 	"smart.logviewer.controllers", 
 	"smart.logviewer.services",
 	"smart.logviewer.factories",
-	"smart.logviewer.filters"
+	"smart.logviewer.filters",
+	"smart.logviewer.directives"
 ])
 .provider("logviewer", function() {
 	this.api = "/logs";

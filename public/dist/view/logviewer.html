@@ -1,18 +1,24 @@
 <div class="smart-log-viewer">
-	<div class="log-panel" scroll-glue>
-		<div ng-repeat="log in logs | reverse | filterMessage: textSearch" class="log-line">
-			<div class="timestamp">
-				<span>{{log.timestamp | amDateFormat: 'DD/MM HH:mm:ss.SSS'}}</span>
+	<div class="log-panel" scroll-glue smart-scroll-viewport load-below="loadNextLogs" load-above="loadPreviousLogs" api="logsAPI">
+		<div class="smart-scroll-container">
+			<div class="top-loading-panel">
+				<span ng-if="logsAPI.isLoading && !logsAPI.topLoaded">Loading previous logs ...</span>
+				<span ng-if="logsAPI.topLoaded">No previous logs available</span>
 			</div>
-			<div class="label" ng-if="showLabel">
-				<span>{{log.label}}</span>
+			<div ng-repeat="log in logsAPI.items | filterMessage: textSearch" class="log-line">
+				<div class="timestamp">
+					<span>{{log.timestamp | amDateFormat: 'DD/MM HH:mm:ss.SSS'}}</span>
+				</div>
+				<div class="label" ng-if="showLabel">
+					<span>{{log.label}}</span>
+				</div>
+				<div class="level">
+					<span class="{{log.level + '-level'}}">{{log.level}}</span>
+				</div>
+				<span ng-bind-html="log.message | highlightText: textSearch"></span>
 			</div>
-			<div class="level">
-				<span class="{{log.level + '-level'}}">{{log.level}}</span>
-			</div>
-			<span ng-bind-html="log.message | highlightText: textSearch"></span>
+			<div class="bottom-loading-panel">...</div>
 		</div>
-		<div class="loading-panel">...</div>
 	</div>
 	<div class="control-panel">
 		<form>
@@ -20,7 +26,7 @@
 				<input type="text" class="search-input" ng-model="form.search" placeholder="Text search" ng-enter="search()">
 			</div>
 			<div class="date-panel">
-				Coucou
+				topLoaded : {{logsAPI.topLoaded}}, bottomLoaded : {{logsAPI.bottomLoaded}}, loading: {{logsAPI.isLoading}}, height : {{logsAPI.height}}
 			</div>
 		</form>
 	</div>

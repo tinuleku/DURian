@@ -31,4 +31,19 @@ angular.module("durian.services.database", [])
 		
 		return deferred.promise;
 	};
+	
+	this.getStats = function() {
+		
+		var deferred = promiseFactory.defer();
+		var url = apiRoot + "/stats";
+		$http.get(url)
+		.success(function(data) {
+			deferred.resolve(data.stats);
+		})
+		.error(function(data) {
+			deferred.reject(data);
+		});
+		
+		return deferred.promise;
+	};
 });

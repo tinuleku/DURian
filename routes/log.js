@@ -19,19 +19,22 @@ module.exports = function(app) {
 			checker.checkAdmin(req, res, function() {
 				var options = {
 					start: req.params["start"] | 0,
-					limit: req.params["limit"] | 100,
-					order: req.params["order"] | "desc"
+					limit: req.query.limit | 100,
+					order: req.params["order"] || "desc"
 				};
-				if (req.params["from"]) {
-					var from = parseInt(req.params["from"]) | 0;
+				if (req.query.from) {
+					var from = parseInt(req.params["from"]) || 0;
 					options.from = new Date(from);
 				}
 				else {
 					options.from = new Date(0);
 				}
-				if (req.params["until"]) {
-					var until = parseInt(req.params["until"]) | 0;
-					options.until = new Date(until);
+				if (req.query.until) {
+					var until = parseInt(req.query.until);
+					// If until is a valid date, lets define a strict comparison
+					if (!isNaN(until)) {
+						options.until = new Date(until - 1);
+					}
 				}
 				winston.query(options, function (err, results) {
 				    if (err) {

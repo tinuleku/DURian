@@ -3,6 +3,21 @@ var winston = require("winston");
 var Record = require("../models/records.js");
 
 /**
+ * Get user records
+ */
+exports.getUserRecords = function(userId, options, next) {
+	winston.info("SvcRecord | Get records for user " + userId);
+	Record.find({author: userId}, function(err, records) {
+		if (err) {
+			winston.error("SvcRecord | error when getting records for user " + userId + " : " + err);
+			return next({status: 500, message: "internal server error"});
+		}
+		return next({status: 200, records: records});
+	});
+};
+
+
+/**
  * Create record
  */
 exports.createRecord = function(selector, userId, next) {

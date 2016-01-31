@@ -60,6 +60,10 @@ connectToDB(function(connected) {
 	httpInstance = http.createServer(app);
 	//https.createServer(options, app).listen(config.port);
 	
-	httpInstance.listen(config.port);
-	winston.info("App | Creating a server on port " + config.port);
+	// hack for hosting
+	var serverPort = process.env.OPENSHIFT_NODEJS_PORT || config.port;
+	var serverIPAddress = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
+	httpInstance.listen(serverPort, serverIPAddress, function() {
+		winston.info('Creating a server on port ' + serverPort);
+	});
 });

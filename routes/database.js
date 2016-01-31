@@ -37,4 +37,9 @@ module.exports = function(app) {
 		.get(checker.checkLogin, function(req, res) {
 			return SvcDatabase.getCollections(req.connection, simpleResponse(res));
 		});
+		
+	app.route("/stats")
+		.get(checker.checkLogin, function(req, res) {
+			return SvcDatabase.getStats(req.connection, simpleResponse(res));
+		});
 }

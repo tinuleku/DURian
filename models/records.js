@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 
 var RecordSchema = new mongoose.Schema({
 	author: mongoose.Schema.Types.ObjectId,
-	
+	collectionName: String,
 	selector: mongoose.Schema.Types.Mixed,
 	documents: {
 		updated: [mongoose.Schema.Types.Mixed],
