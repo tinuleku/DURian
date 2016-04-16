@@ -219,7 +219,7 @@
 
 .smart-log-viewer {
   font-family: 'Roboto Slab', serif;
-  background: #3b3b3b;
+  background: #4c4c4c;
   color: white;
   position: fixed;
   bottom: 0;
@@ -238,6 +238,22 @@
         display: inline-block;
         min-width: 122px;
         padding-left: 2px; }
+      .smart-log-viewer .log-panel .log-line .label-flag {
+        position: relative;
+        display: inline-block;
+        min-width: 70px;
+        max-width: 70px;
+        text-align: center;
+        padding: 1px 1px; }
+        .smart-log-viewer .log-panel .log-line .label-flag div {
+          border-radius: 3px;
+          position: relative;
+          display: inline-block;
+          padding: 0px 3px;
+          max-width: 66px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          background: #333333; }
       .smart-log-viewer .log-panel .log-line .level {
         position: relative;
         display: inline-block;
@@ -246,7 +262,7 @@
           border-radius: 3px;
           padding: 0px 4px; }
         .smart-log-viewer .log-panel .log-line .level span.info-level {
-          background: #616161; }
+          background: #727272; }
         .smart-log-viewer .log-panel .log-line .level span.error-level {
           background: rgba(238, 93, 84, 0.5); }
       .smart-log-viewer .log-panel .log-line .text-highlight {
@@ -258,20 +274,21 @@
         margin-left: -1px;
         font-size: bold; }
     .smart-log-viewer .log-panel .top-loading-panel {
-      margin: 3px;
-      padding: 1px 5px;
-      display: block;
-      border-radius: 4px;
-      background: #555555;
-      color: #888888;
-      text-align: center;
-      font-size: 20px; }
+      padding: 3px; }
+      .smart-log-viewer .log-panel .top-loading-panel div {
+        padding: 1px 5px;
+        display: block;
+        border-radius: 4px;
+        background: #666666;
+        color: #999999;
+        text-align: center;
+        font-size: 20px; }
     .smart-log-viewer .log-panel .bottom-loading-panel {
       padding-bottom: 70px;
       padding-left: 2px; }
   .smart-log-viewer .control-panel {
-    border-top: solid 2px #888888;
-    background: #3b3b3b;
+    border-top: solid 2px #999999;
+    background: #4c4c4c;
     position: absolute;
     bottom: 0;
     width: 100%;
@@ -279,23 +296,61 @@
     z-index: 100; }
     .smart-log-viewer .control-panel .search-panel {
       padding: 4px;
-      max-width: 550px;
-      display: inline-block; }
-      .smart-log-viewer .control-panel .search-panel .search-input {
-        width: 500px;
-        border-radius: 4px;
-        font-size: 20px;
-        background: #bbbbbb;
-        color: #3b3b3b;
-        border: none;
-        height: 30px;
-        padding-top: 2px;
-        padding-bottom: 2px; }
+      margin-right: 10px;
+      max-width: 450px; }
     .smart-log-viewer .control-panel .date-panel {
       position: relative;
       display: inline;
       width: 300px;
       background: red; }
+  .smart-log-viewer [smart-search] {
+    vertical-align: middle;
+    white-space: nowrap;
+    position: relative; }
+    .smart-log-viewer [smart-search] .icon {
+      position: absolute;
+      z-index: 1;
+      top: 0px; }
+    .smart-log-viewer [smart-search] .icon-left {
+      margin-left: 10px;
+      margin-top: 9px;
+      color: #666666;
+      font-size: 20px; }
+    .smart-log-viewer [smart-search] .icon-right {
+      margin-left: -25px;
+      margin-top: 9px;
+      color: #666666;
+      font-size: 20px;
+      cursor: pointer; }
+      .smart-log-viewer [smart-search] .icon-right:hover {
+        color: #999999; }
+    .smart-log-viewer [smart-search] .search-input {
+      position: relative;
+      float: left;
+      width: 500px;
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      border-radius: 5px;
+      font-size: 20px;
+      background: #333333;
+      color: #999999;
+      border: none;
+      height: 30px;
+      padding-left: 35px;
+      padding-right: 30px;
+      padding-top: 0px;
+      padding-bottom: 2px; }
+      .smart-log-viewer [smart-search] .search-input::-webkit-input-placeholder {
+        color: #666666; }
+      .smart-log-viewer [smart-search] .search-input:-moz-placeholder {
+        color: #666666; }
+      .smart-log-viewer [smart-search] .search-input::-moz-placeholder {
+        color: #666666; }
+      .smart-log-viewer [smart-search] .search-input:-ms-input-placeholder {
+        color: #666666; }
+      .smart-log-viewer [smart-search] .search-input:after {
+        content: "";
+        clear: both; }
 
 body > div {
   font-family: 'Ubuntu'; }

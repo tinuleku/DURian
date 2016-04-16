@@ -5,7 +5,8 @@ var config = {
 		db: "mongodb://localhost:27017/durian",
 		capped: true,
 		cappedSize: 5000000, // 5Mo
-		includeIds: false
+		includeIds: false,
+		label: "durian"
 	},
 	mongodb: {
 		uri: "mongodb://localhost:27017/durian",

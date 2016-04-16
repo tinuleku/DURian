@@ -1,16 +1,20 @@
 <div class="smart-log-viewer">
-	<div class="log-panel" scroll-glue smart-scroll-viewport load-below="loadNextLogs" load-above="loadPreviousLogs" api="logsAPI">
+	<div class="log-panel" scroll-glue smart-scroll-viewport load-below="loadNextLogs(item, callback)" load-above="loadPreviousLogs(item, callback)" search="textSearch" api="logsAPI">
 		<div class="smart-scroll-container">
 			<div class="top-loading-panel">
-				<span ng-if="logsAPI.isLoading && !logsAPI.topLoaded">Loading previous logs ...</span>
-				<span ng-if="logsAPI.topLoaded">No previous logs available</span>
+				<div>
+					<span ng-if="logsAPI.isLoading && !logsAPI.topLoaded">Loading previous logs ...</span>
+					<span ng-if="logsAPI.topLoaded">No more logs available</span>
+					<span ng-if="logsAPI.full">Max number of log lines reached. Refine the timelapse</span>
+					<span ng-if="!logsAPI.topLoaded && !logsAPI.isLoading && !logsAPI.full">&nbsp;</span>
+				</div>
 			</div>
-			<div ng-repeat="log in logsAPI.items | filterMessage: textSearch" class="log-line">
+			<div ng-repeat="log in logsAPI.items" class="log-line">
 				<div class="timestamp">
 					<span>{{log.timestamp | amDateFormat: 'DD/MM HH:mm:ss.SSS'}}</span>
 				</div>
-				<div class="label" ng-if="showLabel">
-					<span>{{log.label}}</span>
+				<div class="label-flag" ng-if="showLabel">
+					<div ng-if="log.label"><span>{{log.label}}</span></div>
 				</div>
 				<div class="level">
 					<span class="{{log.level + '-level'}}">{{log.level}}</span>
@@ -22,11 +26,12 @@
 	</div>
 	<div class="control-panel">
 		<form>
-			<div class="search-panel">
-				<input type="text" class="search-input" ng-model="form.search" placeholder="Text search" ng-enter="search()">
+			<div smart-search class="search-panel" ng-model="form.search" ng-submit="search()"></div>
+			<div class="flag-panel">
+				
 			</div>
 			<div class="date-panel">
-				topLoaded : {{logsAPI.topLoaded}}, bottomLoaded : {{logsAPI.bottomLoaded}}, loading: {{logsAPI.isLoading}}, height : {{logsAPI.height}}
+				
 			</div>
 		</form>
 	</div>

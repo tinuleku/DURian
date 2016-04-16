@@ -1,7 +1,7 @@
 angular.module("smart.logviewer.controllers", [])
-.controller("LogviewerCtrl", function(logService, $scope, $sce) {
+.controller("LogviewerCtrl", function(logService, logviewer, $scope, $sce) {
 	
-	$scope.showLabel = false;
+	$scope.showLabel = logviewer.showLabel;
 	
 	$scope.form = {
 		search: ""
@@ -28,9 +28,6 @@ angular.module("smart.logviewer.controllers", [])
 		})
 		.success(function(logs) {
 			$scope.logsAPI.items = logs;
-			$scope.logsAPI.items.forEach(function(log) {
-				if (log.label) $scope.showLabel = true;
-			});
 		});
 	}
 	

@@ -11,10 +11,12 @@ angular.module("smart.logviewer", [
 ])
 .provider("logviewer", function() {
 	this.api = "/logs";
+	this.showLabel = true;
 	
 	this.$get = function () {
     	return {
-	    	api: this.api
+	    	api: this.api,
+	    	showLabel: this.showLabel
     	};
     };
 })

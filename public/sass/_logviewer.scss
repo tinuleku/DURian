@@ -1,7 +1,7 @@
 .smart-log-viewer {
 	font-family: 'Roboto Slab', serif;
 	
-	$backgroundColor: #3b3b3b;
+	$backgroundColor: #4c4c4c; //#3b3b3b;
 	$greenColor: #2ebe8a;
 	$redColor: #ee5d54;
 	
@@ -29,6 +29,26 @@
 				display: inline-block;
 				min-width: 122px;
 				padding-left: 2px;
+			}
+			
+			.label-flag {
+				position: relative;
+				display: inline-block;
+				min-width: 70px;
+				max-width: 70px;
+				text-align: center;
+				padding: 1px 1px;
+				
+				div {
+					border-radius: 3px;
+					position: relative;
+					display: inline-block;
+					padding: 0px 3px;
+					max-width: 66px;
+					overflow: hidden;
+					text-overflow: ellipsis;
+					background: darken($backgroundColor, 10%);
+				}
 			}
 			
 			.level {
@@ -62,14 +82,18 @@
 		}
 		
 		.top-loading-panel {
-			margin: 3px;
-			padding: 1px 5px;
-			display: block;
-			border-radius: 4px;
-			background: lighten($backgroundColor, 10%);
-			color: lighten($backgroundColor, 30%);
-			text-align: center;
-			font-size: 20px;
+			
+			padding: 3px;
+			
+			div {
+				padding: 1px 5px;
+				display: block;
+				border-radius: 4px;
+				background: lighten($backgroundColor, 10%);
+				color: lighten($backgroundColor, 30%);
+				text-align: center;
+				font-size: 20px;
+			}
 		}		
 		
 		.bottom-loading-panel {
@@ -88,22 +112,9 @@
 		z-index: 100;
 		
 		.search-panel {
-			
 			padding: 4px;
-			max-width: 550px;
-			display: inline-block;
-			
-			.search-input {
-				width: 500px;
-				border-radius: 4px;
-				font-size: 20px;
-				background: lighten($backgroundColor, 50%);
-				color: $backgroundColor;
-				border: none;
-				height: 30px;
-				padding-top: 2px;
-				padding-bottom: 2px;
-			}
+			margin-right: 10px;
+			max-width: 450px;
 		}
 		
 		.date-panel {
@@ -111,6 +122,78 @@
 			display: inline;
 			width: 300px;
 			background: red;
+		}
+	}
+	
+	[smart-search] {
+		$placeholderColor: lighten($backgroundColor, 10%);
+	
+		vertical-align: middle;
+		white-space: nowrap;
+		position: relative;
+		
+		.icon {
+			position: absolute;
+			z-index: 1;
+			top: 0px;	
+		}
+		
+		.icon-left {
+			margin-left: 10px;
+			margin-top: 9px;
+			color: $placeholderColor;
+			font-size: 20px;
+		}
+		
+		.icon-right {
+			margin-left: -25px;
+			margin-top: 9px;
+			color: $placeholderColor;
+			font-size: 20px;
+			cursor: pointer;
+			
+			&:hover {
+				color: lighten($placeholderColor, 20%);
+			}
+		}
+		
+		.search-input {
+			position: relative;
+			float: left;
+			width: 500px;
+			-webkit-border-radius: 5px;
+			-moz-border-radius: 5px;
+				border-radius: 5px;
+			font-size: 20px;
+			background: darken($backgroundColor, 10%);
+			color: lighten($backgroundColor, 30%);
+			border: none;
+			height: 30px;
+			padding-left: 35px;
+			padding-right: 30px;
+			padding-top: 0px;
+			padding-bottom: 2px;
+			
+			&::-webkit-input-placeholder {
+				color: $placeholderColor;
+			}
+			
+			&:-moz-placeholder {
+				color: $placeholderColor;
+			}
+			
+			&::-moz-placeholder {
+				color: $placeholderColor;
+			}
+			
+			&:-ms-input-placeholder {
+				color: $placeholderColor;
+			}
+			
+			&:after {
+				content: "";
+				clear: both;
+			}
 		}
 	}
 }
