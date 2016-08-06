@@ -1,0 +1,18 @@
+@mixin respond-up-to($media) {
+	@if $media == sm {
+		@media only screen and (max-width: map-get($grid-breakpoints, sm)), 
+		only screen and (-webkit-min-device-pixel-ratio : 2) { @content; }
+	}
+	@else {
+		@media only screen and (max-width: map-get($grid-breakpoints, $media)) { @content; }
+	}
+}
+
+@mixin respond-down-to($media) {
+	@if $media == sm {
+		@media only screen and (min-width: map-get($grid-breakpoints, sm)) and (-webkit-max-device-pixel-ratio : 1.5) { @content; }
+	}
+	@else {
+		@media only screen and (min-width: map-get($grid-breakpoints, $media)) { @content; }
+	}
+}

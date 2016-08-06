@@ -33,7 +33,7 @@ angular.module("durian", [
     
     // Logs
     logviewerProvider.api = apiRoot + "/logs";
-    logviewerProvider.showLabel = false;
+    logviewerProvider.showLabel = true;
     
     // Satellizer config
 	$authProvider.loginUrl = apiRoot + "/login/local"; //URL to API server

@@ -1,57 +1,64 @@
 <div class="durian-login-page">
-	<div class="box-panel cube-panel" ng-class="{'slide-right': !!form.databaseType}">
-		<div class="database-panel panel-front">
-			<div class="database-header">
-				<span>Database type</span>
-			</div>
-			<div ng-repeat="database in databasesOption" class="database-option" ng-class="{'selected': database.selected}">
-				<button type="button" class="database-select" ng-click="selectDatabase(database)">
-					<span ng-if="!database.image">{{database.name}}</span>
-					<img ng-src="{{database.image}}" ng-if="database.image" width="82px" height="82px"/>
-					<div class="caption"></div>
-				</button>
-			</div>
-			<div class="database-footer" ng-if="false">
-				<a href ng-click="select()" class="small" ng-class="{'disabled': !selectedDatabase}">Select <i class="fa fa-chevron-right"></i></a>
-			</div>
-		</div>
-		<div class="credentials-panel panel-right">
-			<div class="credentials-header">
-				<a href ng-click="unselect()"><i class="fa fa-chevron-left"></i> Back</a>
-				<span class="title">Connection</span>
-			</div>
-			<div class="credentials-content">
-				<form>
-					<foundation-alert data-alert="alert"></foundation-alert>
-					<div class="row">
-						<div class="row collapse prefix-radius">
-							<label>Database URL</label>
-							<div class="small-4 large-3 columns">
-								<span class="prefix">{{form.databaseType}}://</span>
-							</div>
-							<div class="small-8 large-9 columns">
-								<input type="text" placeholder="Database URL" ng-model="form.database">
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="login-panel">
+				<div>
+					<div class="database-panel" ng-if="!form.databaseType">
+						<div class="login-header">
+							<span>Database type</span>
+						</div>
+						<div class="login-content">
+							<div ng-repeat="database in databasesOption" class="database-option" ng-class="{'selected': database.selected}">
+								<button type="button" class="btn btn-outline-secondary square" ng-click="selectDatabase(database)">
+									<div class="square-content">
+										<span ng-if="!database.image">{{database.name}}</span>
+										<span class="center-helper"></span>
+										<img ng-src="{{database.image}}" ng-if="database.image" width="82px" height="82px"/>
+									</div>
+									<div class="caption"></div>
+								</button>
 							</div>
 						</div>
-					</div>
-					<div class="row">
-						<div class="row collapse">
-							<label>Username
-								<input class="radius" type="text" placeholder="Username" ng-model="form.username" />
-							</label>
+						<div class="database-footer" ng-if="false">
+							<a href ng-click="select()" class="small" ng-class="{'disabled': !selectedDatabase}">Select <i class="fa fa-chevron-right"></i></a>
 						</div>
 					</div>
-					<div class="row">
-						<div class="row collapse">
-							<label>Password
-								<input class="radius" type="password" placeholder="Password" ng-model="form.password" />
-							</label>
+					<div class="credentials-panel" ng-if="!!form.databaseType">
+						<div class="login-header">
+							<a class="btn btn-link" href ng-click="unselect()"><i class="fa fa-chevron-left"></i> Back</a>
+							<span class="title">Connection</span>
+						</div>
+						<div class="credentials-content">
+							<form>
+								<io-alert data-alert="alert"></io-alert>
+								<div class="form-group row">
+									<label class="col-form-label col-xs-2">URL</label>
+									<div class="col-xs-10">
+										<div class="input-group">
+											<div class="input-group-addon">{{form.databaseType}}://</div>
+											<input type="text" class="form-control" placeholder="Database URL" ng-model="form.database" />
+										</div>
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-xs-3 col-form-label">Username</label>
+									<div class="col-xs-9">
+										<input class="form-control" type="text" placeholder="Username" ng-model="form.username" />
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-xs-3 col-form-label">Password</label>
+									<div class="col-xs-9">
+										<input class="form-control" type="password" placeholder="Password" ng-model="form.password" />
+									</div>
+								</div>
+								<div class="credentials-footer clearfix">
+									<button type="button" class="btn btn-outline-primary pull-right" ng-click="login()">Login</button>
+								</div>
+							</form>
 						</div>
 					</div>
-					<div class="credentials-footer">
-						<button type="button" class="button radius tiny" ng-click="login()">Login</button>
-					</div>
-				</form>
+				</div>
 			</div>
 		</div>
 	</div>

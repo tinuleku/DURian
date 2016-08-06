@@ -9,18 +9,22 @@
 					<span ng-if="!logsAPI.topLoaded && !logsAPI.isLoading && !logsAPI.full">&nbsp;</span>
 				</div>
 			</div>
-			<div ng-repeat="log in logsAPI.items" class="log-line">
-				<div class="timestamp">
-					<span>{{log.timestamp | amDateFormat: 'DD/MM HH:mm:ss.SSS'}}</span>
-				</div>
-				<div class="label-flag" ng-if="showLabel">
-					<div ng-if="log.label"><span>{{log.label}}</span></div>
-				</div>
-				<div class="level">
-					<span class="{{log.level + '-level'}}">{{log.level}}</span>
-				</div>
-				<span ng-bind-html="log.message | highlightText: textSearch"></span>
-			</div>
+			<table>
+				<tr ng-repeat="log in logsAPI.items" class="log-line">
+					<td class="timestamp">
+						<span>{{log.timestamp | amDateFormat: 'DD/MM HH:mm:ss.SSS'}}</span>
+					</td>
+					<td class="labl" ng-if="showLabel">
+						<div ng-if="log.label" class="flag"><span>{{log.label}}<span></div>
+					</td>
+					<td class="level">
+						<div class="{{log.level + '-level'}} flag">{{log.level}}</div>
+					</td>
+					<td>
+						<span ng-bind-html="log.message | highlightText: textSearch"></span>
+					</td>
+				</tr>
+			</table>
 			<div class="bottom-loading-panel">...</div>
 		</div>
 	</div>

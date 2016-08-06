@@ -1,106 +1,67 @@
-/** Colors */
+/** Colors **/
+/** Dummy css as 1st css block is skipped **/
+body {
+  background: transparent; }
+
 .durian-login-page {
-  -webkit-perspective: 500px; }
-  .durian-login-page .cube-panel {
+  background: rgba(87, 178, 127, 0.7);
+  width: 100%;
+  height: 100%; }
+  @media only screen and (min-width: 544px) and (-webkit-max-device-pixel-ratio: 1.5) {
+    .durian-login-page .login-panel {
+      background: green;
+      display: block;
+      position: relative;
+      width: 450px;
+      margin: auto;
+      margin-top: 20px;
+      margin-bottom: 20px;
+      padding: 1rem;
+      background: white;
+      border: 1px #eceeef solid;
+      border-radius: 6px;
+      box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.4); }
+      .durian-login-page .login-panel .database-option {
+        width: 33%;
+        padding: 3px; } }
+  @media only screen and (max-width: 544px), only screen and (-webkit-min-device-pixel-ratio: 2) {
+    .durian-login-page .login-panel {
+      position: relative;
+      width: 100%;
+      padding: 10px; }
+      .durian-login-page .login-panel .database-option {
+        width: 33%;
+        padding: 3px; } }
+  .durian-login-page .login-header {
     position: relative;
-    width: 360px;
-    -webkit-transition: -webkit-transform 1s;
-    transition: transform 1s;
-    /* Animate the transform properties */
-    -webkit-transform-style: preserve-3d;
-    transform-style: preserve-3d; }
-    .durian-login-page .cube-panel .panel-front {
-      -webkit-transform: translateZ(180px);
-      transform: translateZ(180px); }
-    .durian-login-page .cube-panel .panel-right {
-      -webkit-transform: rotateY(90deg) translateZ(180px);
-      transform: rotateY(90deg) translateZ(180px); }
-  .durian-login-page .box-panel {
-    margin: auto;
-    margin-top: 40px; }
-    .durian-login-page .box-panel .database-panel {
+    padding-bottom: 2rem;
+    text-align: center;
+    font-size: 1.5rem; }
+    .durian-login-page .login-header > a {
       position: absolute;
-      top: 0;
-      background: #fff; }
-      .durian-login-page .box-panel .database-panel .database-header {
-        font-size: 25px;
-        color: #b7b7b7;
-        border-bottom: solid 2px #b7b7b7;
-        padding-bottom: 3px;
-        margin-bottom: 3px;
-        text-align: center; }
-      .durian-login-page .box-panel .database-panel .database-option {
-        display: inline-block;
-        position: relative;
-        width: 120px;
-        max-width: 120px;
-        height: 120px;
-        overflow: hidden;
-        margin-right: 0px;
-        margin-left: 0px;
-        padding: 0px;
-        -webkit-transition: -webkit-transform 0s;
-        transition: transform 0s; }
-        .durian-login-page .box-panel .database-panel .database-option > button {
-          position: relative;
-          border: solid 2px #b7b7b7;
-          border-radius: 6px;
-          margin: 3px;
-          padding-right: 3px;
-          padding-left: 3px;
-          width: 114px;
-          height: 114px;
-          background: white;
-          font-size: 16px; }
-          .durian-login-page .box-panel .database-panel .database-option > button .caption {
-            position: absolute;
-            z-index: 10;
-            top: 0px;
-            left: 0px;
-            width: 100%;
-            height: 100%;
-            background: transparent; }
-            .durian-login-page .box-panel .database-panel .database-option > button .caption:hover {
-              background: rgba(183, 183, 183, 0.3); }
-      .durian-login-page .box-panel .database-panel .database-option.selected > button .caption {
-        background: rgba(183, 218, 242, 0.3); }
-      .durian-login-page .box-panel .database-panel .database-footer {
-        margin-top: 3px;
-        padding-top: 3px; }
-        .durian-login-page .box-panel .database-panel .database-footer > a {
-          position: absolute;
-          right: 0px;
-          font-size: 14px; }
-    .durian-login-page .box-panel .credentials-panel {
-      position: absolute;
-      top: 0; }
-      .durian-login-page .box-panel .credentials-panel .credentials-header {
-        font-size: 25px;
-        color: #b7b7b7;
-        border-bottom: solid 2px #b7b7b7;
-        padding-bottom: 3px;
-        margin-bottom: 3px;
-        text-align: center; }
-        .durian-login-page .box-panel .credentials-panel .credentials-header > a {
-          position: absolute;
-          left: 0px;
-          margin-top: 10px;
-          font-size: 14px; }
-      .durian-login-page .box-panel .credentials-panel .credentials-content {
-        width: 360px;
-        padding: 3px; }
-        .durian-login-page .box-panel .credentials-panel .credentials-content input.radius {
-          border-radius: 3px; }
-      .durian-login-page .box-panel .credentials-panel .credentials-footer {
-        margin-top: 3px;
-        padding-top: 3px; }
-        .durian-login-page .box-panel .credentials-panel .credentials-footer > button {
-          position: absolute;
-          right: 3px;
-          font-size: 14px; }
-  .durian-login-page .slide-right {
-    -webkit-transform: rotateY(-90deg);
-    transform: rotateY(-90deg); }
+      left: 0px; }
+  .durian-login-page .database-option {
+    display: inline-block;
+    position: relative;
+    overflow: hidden; }
+    .durian-login-page .database-option > button {
+      position: relative;
+      width: 100%;
+      padding: 0px;
+      background: white;
+      font-size: 16px;
+      text-align: center;
+      margin: 0; }
+      .durian-login-page .database-option > button .caption {
+        position: absolute;
+        z-index: 10;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        height: 100%;
+        background: transparent; }
+        .durian-login-page .database-option > button .caption:hover {
+          background: rgba(183, 183, 183, 0.3); }
 
 .explorer-page {
   padding: 0px;
@@ -226,49 +187,69 @@
     position: relative;
     height: 100%;
     overflow: auto; }
-    .smart-log-viewer .log-panel .log-line {
+    .smart-log-viewer .log-panel .flag {
+      border-radius: 3px;
       position: relative;
-      font-size: 14px; }
-      .smart-log-viewer .log-panel .log-line .timestamp {
+      display: inline-block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-height: 18px;
+      padding: 0px 3px; }
+    .smart-log-viewer .log-panel table {
+      width: 100%;
+      border: none;
+      background: transparent;
+      padding: 0px;
+      margin: 0px; }
+      .smart-log-viewer .log-panel table tr.log-line {
         position: relative;
-        display: inline-block;
-        min-width: 122px;
-        padding-left: 2px; }
-      .smart-log-viewer .log-panel .log-line .label-flag {
-        position: relative;
-        display: inline-block;
-        min-width: 70px;
-        max-width: 70px;
-        text-align: center;
-        padding: 1px 1px; }
-        .smart-log-viewer .log-panel .log-line .label-flag div {
-          border-radius: 3px;
+        font-size: 14px;
+        line-height: 21px;
+        background: transparent; }
+        .smart-log-viewer .log-panel table tr.log-line td {
+          background: transparent;
+          border: none;
+          padding: 1px;
+          color: white; }
+        .smart-log-viewer .log-panel table tr.log-line .timestamp {
           position: relative;
           display: inline-block;
-          padding: 0px 3px;
-          max-width: 66px;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          background: #333333; }
-      .smart-log-viewer .log-panel .log-line .level {
-        position: relative;
-        display: inline-block;
-        min-width: 40px; }
-        .smart-log-viewer .log-panel .log-line .level span {
+          min-width: 122px;
+          max-width: 135px;
+          width: 135px;
+          padding-left: 2px; }
+        .smart-log-viewer .log-panel table tr.log-line .labl {
+          position: relative;
+          display: inline-block;
+          min-width: 70px;
+          max-width: 70px;
+          width: 70px;
+          text-align: center;
+          padding: 1px;
+          max-height: 19px; }
+          .smart-log-viewer .log-panel table tr.log-line .labl .flag {
+            max-width: 68px;
+            background: rgba(156, 130, 84, 0.7); }
+        .smart-log-viewer .log-panel table tr.log-line .level {
+          position: relative;
+          display: inline-block;
+          min-width: 40px;
+          max-width: 40px;
+          width: 40px;
+          padding: 1px;
+          max-height: 19px; }
+          .smart-log-viewer .log-panel table tr.log-line .level div.info-level {
+            background: #727272; }
+          .smart-log-viewer .log-panel table tr.log-line .level div.error-level {
+            background: rgba(238, 93, 84, 0.5); }
+        .smart-log-viewer .log-panel table tr.log-line .text-highlight {
+          background: rgba(46, 190, 138, 0.5);
           border-radius: 3px;
-          padding: 0px 4px; }
-        .smart-log-viewer .log-panel .log-line .level span.info-level {
-          background: #727272; }
-        .smart-log-viewer .log-panel .log-line .level span.error-level {
-          background: rgba(238, 93, 84, 0.5); }
-      .smart-log-viewer .log-panel .log-line .text-highlight {
-        background: rgba(46, 190, 138, 0.5);
-        border-radius: 3px;
-        padding-right: 1px;
-        padding-left: 1px;
-        margin-right: -1px;
-        margin-left: -1px;
-        font-size: bold; }
+          padding-right: 1px;
+          padding-left: 1px;
+          margin-right: -1px;
+          margin-left: -1px;
+          font-size: bold; }
     .smart-log-viewer .log-panel .top-loading-panel {
       padding: 3px; }
       .smart-log-viewer .log-panel .top-loading-panel div {
@@ -344,11 +325,30 @@
         color: #666666; }
       .smart-log-viewer [smart-search] .search-input:-ms-input-placeholder {
         color: #666666; }
+      .smart-log-viewer [smart-search] .search-input:focus {
+        outline: none; }
       .smart-log-viewer [smart-search] .search-input:after {
         content: "";
         clear: both; }
 
 body > div {
   font-family: 'Ubuntu'; }
+
+.square .square-content {
+  position: absolute;
+  width: 100%;
+  height: 100%; }
+.square:after {
+  content: "";
+  display: block;
+  padding-bottom: 100%; }
+
+.center-helper {
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle; }
+
+.center-helper + img {
+  vertical-align: middle; }
 
 /*# sourceMappingURL=index.css.map */

@@ -130,7 +130,7 @@ angular.module("smart.logviewer.directives", [])
 		 * Result in px
 		 */
 		this.getContentHeight = function(items) {
-			return 21*items.length; // simplistic model, line height = 21px
+			return 22*items.length; // simplistic model, line height = 21px
 		};
 		
 		function filterItems(items, search) {

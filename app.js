@@ -11,13 +11,23 @@ var config = require("./config");
 
 var app = express();
 
-/**
- * Requiring "winston-mongodb" will expose winston.transports.MongoDB
- */
-require("winston-mongodb").MongoDB;
-
 winston.remove(winston.transports.Console);
-winston.add(winston.transports.MongoDB, config.winston);
+
+// production
+if (process.env.OPENSHIFT_NODEJS_PORT) {
+  /**
+  * Requiring "winston-mongodb" will expose winston.transports.MongoDB
+  */
+  require("winston-mongodb").MongoDB;
+  winston.add(winston.transports.MongoDB, config.winston);
+}
+else {
+  winston.add(winston.transports.Console, {
+    colorize: true,
+    prettyPrint: true,
+    timestamp: true
+  });
+}
 
 app.use(express.static(__dirname + "/public/dist")); 	// set the static files location /public/img will be /img for users
 app.use(morgan("dev")); 								// log every request to the console

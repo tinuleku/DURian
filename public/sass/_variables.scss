@@ -1,2 +1,7 @@
-/** Colors */
+/** Colors **/
 $greyColor: #b7b7b7;
+
+/** Dummy css as 1st css block is skipped **/
+body {
+	background: transparent;
+}

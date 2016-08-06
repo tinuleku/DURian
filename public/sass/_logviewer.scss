@@ -4,6 +4,7 @@
 	$backgroundColor: #4c4c4c; //#3b3b3b;
 	$greenColor: #2ebe8a;
 	$redColor: #ee5d54;
+	$brownColor: #9c8254;
 	
 	background: $backgroundColor;
 	color: white;
@@ -20,64 +21,90 @@
 		
 		overflow: auto;
 		
-		.log-line {
+		.flag {
+			border-radius: 3px;
 			position: relative;
-			font-size: 14px;
+			display: inline-block;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			max-height: 18px;
+			padding: 0px 3px;
+		}
+					
+		
+		table {
+		
+			width: 100%;
+			border: none;
+			background: transparent;
+			padding: 0px;
+			margin: 0px;
 			
-			.timestamp {
+			tr.log-line {
 				position: relative;
-				display: inline-block;
-				min-width: 122px;
-				padding-left: 2px;
-			}
-			
-			.label-flag {
-				position: relative;
-				display: inline-block;
-				min-width: 70px;
-				max-width: 70px;
-				text-align: center;
-				padding: 1px 1px;
+				font-size: 14px;
+				line-height: 21px;
+				background: transparent;
 				
-				div {
-					border-radius: 3px;
+				td {
+					background: transparent;
+					border: none;
+					padding: 1px;
+					color: white;
+				}
+				
+				.timestamp {
 					position: relative;
 					display: inline-block;
-					padding: 0px 3px;
-					max-width: 66px;
-					overflow: hidden;
-					text-overflow: ellipsis;
-					background: darken($backgroundColor, 10%);
+					min-width: 122px;
+					max-width: 135px;
+					width: 135px;
+					padding-left: 2px;
 				}
-			}
-			
-			.level {
-				position: relative;
-				display: inline-block;
-				min-width: 40px;
 				
-				span {
+				.labl {
+					position: relative;
+					display: inline-block;
+					min-width: 70px;
+					max-width: 70px;
+					width: 70px;
+					text-align: center;
+					padding: 1px;
+					max-height: 19px;
+					
+					.flag {
+						max-width: 68px;
+						background: fade-out($brownColor, 0.3);
+					}
+				}
+				
+				.level {
+					position: relative;
+					display: inline-block;
+					min-width: 40px;
+					max-width: 40px;
+					width: 40px;
+					padding: 1px;
+					max-height: 19px;
+					
+					div.info-level {
+						background: lighten($backgroundColor, 15%);
+					}
+					
+					div.error-level {
+						background: fade-out($redColor, 0.5);
+					}
+				}
+				
+				.text-highlight {
+					background: fade-out($greenColor, 0.5);
 					border-radius: 3px;
-					padding: 0px 4px;
+					padding-right: 1px;
+					padding-left: 1px;
+					margin-right: -1px;
+					margin-left: -1px;
+					font-size: bold;
 				}
-				
-				span.info-level {
-					background: lighten($backgroundColor, 15%);
-				}
-				
-				span.error-level {
-					background: fade-out($redColor, 0.5);
-				}
-			}
-			
-			.text-highlight {
-				background: fade-out($greenColor, 0.5);
-				border-radius: 3px;
-				padding-right: 1px;
-				padding-left: 1px;
-				margin-right: -1px;
-				margin-left: -1px;
-				font-size: bold;
 			}
 		}
 		
@@ -188,6 +215,10 @@
 			
 			&:-ms-input-placeholder {
 				color: $placeholderColor;
+			}
+			
+			&:focus {
+				outline: none;
 			}
 			
 			&:after {

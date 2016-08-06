@@ -77,7 +77,7 @@ module.exports = function(grunt) {
 			libcss: {
 				src: [
 					"bower_components/font-awesome/css/font-awesome.min.css",
-					"bower_components/foundation/css/foundation.min.css"
+					"bower_components/bootstrap/dist/css/bootstrap.min.css"
 				],
 				dest: "public/css/lib.css"
 			},

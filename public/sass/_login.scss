@@ -1,160 +1,88 @@
 .durian-login-page {
 	
-	-webkit-perspective: 500px;
+	background: rgba(87, 178, 127, 0.7);
+	width: 100%;
+	height: 100%;
 	
-	$boxWidth: 360px;
-	$rotateAngle: 90deg;
-
-	.cube-panel {
-		position: relative; 
-		width: $boxWidth;
+	@include respond-down-to('sm') {
 		
-		-webkit-transition: -webkit-transform 1s;
-		transition: transform 1s; /* Animate the transform properties */
-	
-		-webkit-transform-style: preserve-3d;
-		transform-style: preserve-3d;
-		
-		$depth: $boxWidth/2;
-		
-		.panel-front {
-			-webkit-transform: translateZ($depth);
-			transform: translateZ($depth);
-		}
-		
-		.panel-right {
-			-webkit-transform: rotateY($rotateAngle) translateZ($depth);
-			transform: rotateY($rotateAngle) translateZ($depth);
-		}
-	}
-
-	.box-panel {
-		margin: auto; 
-		margin-top: 40px; 
-		
-		.database-panel {
-			position: absolute;
-			top: 0;
-			background: #fff;
-			$optionWidth: $boxWidth/3;
-		
-			.database-header {
-				font-size: 25px; 
-				color: $greyColor; 
-				border-bottom: solid 2px $greyColor; 
-				padding-bottom: 3px; 
-				margin-bottom: 3px;
-				text-align: center;
-			}
+		.login-panel {
+			background: green;
+			display: block;
+			position: relative;
+			width: 450px;
+			margin: auto;
+			margin-top: 20px;
+			margin-bottom: 20px;
+			padding: 1rem;
+			
+			background: white;
+			border: 1px $gray-lighter solid;
+			border-radius: 6px;
+			box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.4);
 			
 			.database-option {
-				display: inline-block; 
-				position: relative; 
-				width: $optionWidth; 
-				max-width: $optionWidth; 
-				height: $optionWidth; 
-				overflow: hidden; 
-				margin-right: 0px; 
-				margin-left: 0px; 
-				padding: 0px;
-				-webkit-transition: -webkit-transform 0s;
-				transition: transform 0s;
-				
-				$padding: 3px;
-				
-				& > button {
-					position: relative;
-					border: solid 2px $greyColor; 
-					border-radius: 6px; 
-					margin: 3px; 
-					padding-right: $padding; 
-					padding-left: $padding; 
-					width: $optionWidth - 2*$padding; 
-					height: $optionWidth - 2*$padding; 
-					background: white; 
-					font-size: 16px;
-					
-					.caption {
-						position: absolute;
-						z-index: 10;
-						top: 0px;
-						left: 0px;
-						width: 100%;
-						height: 100%;
-						background: transparent;
-						
-						&:hover {
-							background: transparentize($greyColor, 0.7);
-						}
-					}
-				}
-			}
-			
-			.database-option.selected {
-				
-				& > button .caption {
-					background: transparentize(#b7daf2, 0.7);
-				}
-			}
-			
-			.database-footer {
-				
-				margin-top: 3px; 
-				padding-top: 3px;
-				
-				& > a {
-					position: absolute; 
-					right: 0px; 
-					font-size: 14px;
-				}
-			}
-		}
-		
-		.credentials-panel {
-			position: absolute;
-			top: 0;
-			
-			.credentials-header {
-				& > a {
-					position: absolute; 
-					left: 0px;
-					margin-top: 10px;
-					font-size: 14px;
-				}
-				
-				font-size: 25px; 
-				color: $greyColor; 
-				border-bottom: solid 2px $greyColor; 
-				padding-bottom: 3px; 
-				margin-bottom: 3px;
-				text-align: center;
-			}
-			
-			.credentials-content {
-				width: $boxWidth;
+				width: 33%;
 				padding: 3px;
-				
-				input.radius {
-					border-radius: 3px;
-				}
-			}
-			
-			.credentials-footer {
-				
-				margin-top: 3px; 
-				padding-top: 3px;
-				
-				& > button {
-					position: absolute; 
-					right: 3px; 
-					font-size: 14px;
-				}
 			}
 		}
 	}
 	
-	.slide-right {
-		-webkit-transform: rotateY(-$rotateAngle);
-		transform: rotateY(-$rotateAngle);
+	@include respond-up-to('sm') {
+		.login-panel {
+			position: relative;
+			width: 100%;
+			
+			padding: 10px;
+			
+			.database-option {
+				width: 33%;
+				padding: 3px;
+			}
+		}
+	}
+	
+	.login-header {
+		
+		position: relative;
+		padding-bottom: 2rem;
+		
+		text-align: center;
+		font-size: 1.5rem;
+		
+		> a {
+			position: absolute; 
+			left: 0px;
+		}
+	}
+	
+	.database-option {
+		display: inline-block; 
+		position: relative; 
+		overflow: hidden;
+		
+		& > button {
+			position: relative;
+			width: 100%;
+			padding: 0px;
+			background: white; 
+			font-size: 16px;
+			text-align: center; 
+			margin: 0;
+			
+			.caption {
+				position: absolute;
+				z-index: 10;
+				top: 0px;
+				left: 0px;
+				width: 100%;
+				height: 100%;
+				background: transparent;
+				
+				&:hover {
+					background: transparentize($greyColor, 0.7);
+				}
+			}
+		}
 	}
 }

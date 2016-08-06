@@ -1,39 +1,40 @@
 angular.module("durian.directives", [])
-.directive("foundationAlert", function() {
+.directive("ioAlert", function() {
 	return {
-        restrict: 'E',
-        transclude: true,
-        scope: {
-            alert: "="
-        },
-        controller: function($scope, $timeout) {
-            
-            function displayAlert() {
-	            $scope.visible = !!$scope.alert;
-	            if ($scope.visible && $scope.alert.timeout) {
-		            $timeout($scope.close, $scope.alert.timeout);
-	            }
-            }
-            
-            //displayAlert();
-            
-            $scope.$watch(function() {
-	            return $scope.alert;
-            }, function() {
-	            $scope.changed = true;
-	            displayAlert();
-            });
-            
-            $scope.close = function() {
-	            delete $scope.alert;
-	            $scope.visible = false;
-            };
-            
-        },
-        template: '<div data-alert class="alert-box radius" ng-class="alert.type" ng-if="visible">'
-                    + '{{alert.message}}'
-                    + '</div>'
-    };
+    restrict: 'E',
+    transclude: true,
+    scope: {
+        alert: "="
+    },
+    controller: function($scope, $timeout) {
+        
+        function displayAlert() {
+          $scope.visible = !!$scope.alert;
+          if ($scope.alert) $scope.alertClass = "alert-" + $scope.alert.type;
+          if ($scope.visible && $scope.alert.timeout) {
+            $timeout($scope.close, $scope.alert.timeout);
+          }
+        }
+        
+        //displayAlert();
+        
+        $scope.$watch(function() {
+          return $scope.alert;
+        }, function() {
+          $scope.changed = true;
+          displayAlert();
+        });
+        
+        $scope.close = function() {
+          delete $scope.alert;
+          $scope.visible = false;
+        };
+        
+    },
+    template: '<div role-alert class="alert" ng-class="alertClass" ng-if="visible">'
+                + '{{alert.message}}'
+                + '</div>'
+  };
 })
 .directive("foundationPagination", function() {
 	return {

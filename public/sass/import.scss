@@ -1,4 +1,8 @@
+@import '../../bower_components/bootstrap/scss/variables';
+@import '../../bower_components/bootstrap/scss/mixins/breakpoints';
+
 @import 'variables';
+@import 'mixins';
 
 @import 'login';
 @import 'explorer';
